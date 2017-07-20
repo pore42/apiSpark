@@ -1,4 +1,6 @@
-[
+{
+  "ele":
+  [
         {
           "id":1,
           "name": "Banana",
@@ -33,3 +35,4 @@
           "imgUrl": "_assets/img/kiwi.png"
         }
     ]
+}

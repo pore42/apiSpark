@@ -18,6 +18,7 @@ public class Main {
 
   private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-list.json";
   private static final String viewPath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-view.json";
+  private static final String createPath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-create.json";
 
 
 
@@ -71,14 +72,18 @@ public class Main {
 
 
         FileReader viewReader = new FileReader(viewPath);
-        JSONParser viewParser = new JSONParser();
         JSONObject  viewJson = (JSONObject) jsonParser.parse(viewReader);
 
 
 
         get("/view", (req, res) -> viewJson);
 
+        FileReader createReader = new FileReader(createPath);
+        JSONObject  createObject = (JSONObject) jsonParser.parse(createReader);
+        JSONArray createArray = (JSONArray) createObject.get("ele");
 
+
+        get("/create", (req, res) -> createArray);
 
 
 
