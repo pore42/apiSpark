@@ -16,11 +16,12 @@ import org.json.simple.parser.ParseException;
 
 public class Main {
 
-  private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/test/qoodle-list.json";
+  private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-list.json";
 
 
 
   private static void enableCORS(final String origin, final String methods, final String headers) {
+
 
       options("/*", (request, response) -> {
 
