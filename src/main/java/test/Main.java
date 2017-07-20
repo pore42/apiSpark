@@ -62,8 +62,9 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         try{
-        FileReader reader = new FileReader(filePath);
         JSONParser jsonParser = new JSONParser();
+
+        FileReader reader = new FileReader(filePath);
         JSONObject  jsonObject = (JSONObject) jsonParser.parse(reader);
         JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
 
