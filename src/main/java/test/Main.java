@@ -68,7 +68,7 @@ public class Main {
         JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
 
 
-        get("/qoodles", (req, res) -> jsonArray);
+        get("/list", (req, res) -> jsonArray);
 
 
         FileReader viewReader = new FileReader(viewPath);
