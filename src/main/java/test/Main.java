@@ -16,9 +16,9 @@ import org.json.simple.parser.ParseException;
 
 public class Main {
 
-  private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-list.json";
-  private static final String viewPath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-view.json";
-  private static final String createPath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-create.json";
+  private static final String filePath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-list.json";
+  private static final String viewPath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-view.json";
+  private static final String createPath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-create.json";
 
 
 
