@@ -1,0 +1,35 @@
+[
+        {
+          "id":1,
+          "name": "Banana",
+          "min": 0,
+          "max": 99999,
+          "umoption": "kg",
+          "coinoption": "€",
+          "price": 3.5,
+          "counter": 5,
+          "imgUrl": "_assets/img/bana.png"
+        },
+        {
+          "id":2,
+          "name": "intolleranti al lattosio",
+          "min": 0,
+          "max": 99999,
+          "umoption": "kg",
+          "coinoption": "€",
+          "price": 0,
+          "counter": 0,
+          "imgUrl": "_assets/img/redApple.png"
+        },
+        {
+          "id":3,
+          "name": "celiaci",
+          "min": 0,
+          "max": 99999,
+          "umoption": "",
+          "coinoption": "",
+          "price": 0,
+          "counter": 0,
+          "imgUrl": "_assets/img/kiwi.png"
+        }
+    ]
