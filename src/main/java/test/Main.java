@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 
 public class Main {
 
-  private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/test/dati.json";
+  private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/test/qoodle-list.json";
 
 
 
