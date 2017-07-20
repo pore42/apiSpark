@@ -5,8 +5,6 @@ import static spark.Spark.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
-
 
 
 import org.json.simple.*;
@@ -23,7 +21,6 @@ public class Main {
 
 
   private static void enableCORS(final String origin, final String methods, final String headers) {
-
 
       options("/*", (request, response) -> {
 
@@ -87,18 +84,11 @@ public class Main {
 
 
       }
-      catch(FileNotFoundException ex)
+      catch(Exception ex)
       {
       ex.printStackTrace();
       }
-      catch (IOException ex) {
-      ex.printStackTrace();
-      }
-      catch (ParseException ex) {
-        ex.printStackTrace();
-    } catch (NullPointerException ex) {
-        ex.printStackTrace();
-    }
+
 
 
 
