@@ -44,7 +44,6 @@ public class Main {
           response.header("Access-Control-Allow-Origin", origin);
           response.header("Access-Control-Request-Method", methods);
           response.header("Access-Control-Allow-Headers", headers);
-          // Note: this may or may not be necessary in your particular application
           response.type("application/json");
       });
   }
@@ -58,8 +57,6 @@ public class Main {
 
 
       enableCORS(from, how , head);
-      //togliere
-        get("/hello", (req, res) -> "Hello World");
 
         try{
         JSONParser jsonParser = new JSONParser();
@@ -107,13 +104,6 @@ public class Main {
 
 
 
-  /*    public JSONArray dati = new JSONArray ('');
-
-
-
-
-
-        get("/qoodles", (req, res) -> dati);*/
 
     }
 
