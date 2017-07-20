@@ -1,0 +1,35 @@
+{
+  "qoo" :
+  [
+    {
+        "id": 1,
+        "titolo": "Gas di Novembre",
+        "descrizione": "idfsofdsijjfsdijfsdijfsijosdfjiofd",
+        "partecipanti": 6,
+        "dataChiusura": "October 13, 2014 11:13:00"
+
+      },
+    {
+      "id": 2,
+      "titolo": "Christams Dinner",
+      "descrizione": "idfsofdsijjfsdijfsdijfsijosdfjiofd",
+      "partecipanti": 4,
+      "dataChiusura": "October 13, 2018 11:13:00"
+    },
+    {
+      "id": 3,
+      "titolo": "Picnic",
+      "descrizione": "Picnic in un giardino milanese",
+      "partecipanti": 15,
+      "dataChiusura": "October 17, 2017 14:30:00"
+    },
+    {
+      "id": 4,
+      "titolo": "TestFetch",
+      "descrizione": "Picnic in un giardino milanese",
+      "partecipanti": 200,
+      "dataChiusura": "October 11, 2017 14:30:00"
+    }
+
+]
+}
