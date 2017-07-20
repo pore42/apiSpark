@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 public class Main {
 
   private static final String filePath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-list.json";
+  private static final String viewPath = "/home/jab/Scrivania/spark/src/main/java/dati/qoodle-view.json";
 
 
 
@@ -56,19 +57,32 @@ public class Main {
 
 
       enableCORS(from, how , head);
+      //togliere
         get("/hello", (req, res) -> "Hello World");
 
         try{
         FileReader reader = new FileReader(filePath);
         JSONParser jsonParser = new JSONParser();
         JSONObject  jsonObject = (JSONObject) jsonParser.parse(reader);
-
         JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
 
 
         get("/qoodles", (req, res) -> jsonArray);
 
-//togliere
+
+        FileReader viewReader = new FileReader(viewPath);
+        JSONParser viewParser = new JSONParser();
+        JSONObject  viewJson = (JSONObject) jsonParser.parse(viewReader);
+
+
+
+        get("/view", (req, res) -> viewJson);
+
+
+
+
+
+
       }
       catch(FileNotFoundException ex)
       {
