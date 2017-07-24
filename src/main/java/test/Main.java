@@ -80,7 +80,7 @@ public class Main {
 
         get("/create", (req, res) -> createArray);
 
-        post("/submit", (req, res) -> req.body());
+        post("/submit-new-qoodle", (req, res) -> req.body());
 
 
 
