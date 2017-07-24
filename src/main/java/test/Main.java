@@ -80,6 +80,9 @@ public class Main {
 
         get("/create", (req, res) -> createArray);
 
+        post("/submit", (req, res) -> req.body());
+
+
 
 
 
