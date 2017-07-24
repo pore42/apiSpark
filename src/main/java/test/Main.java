@@ -82,11 +82,13 @@ public class Main {
 
         post("/submit-new-qoodle", (req, res) -> req.body());
 
+        post("/submit-qoodle-choices", (req, res) ->  req.body() );
 
 
 
 
-      }
+
+        }
       catch(Exception ex)
       {
       ex.printStackTrace();
