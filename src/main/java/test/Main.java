@@ -5,12 +5,17 @@ import static spark.Spark.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 
+import com.mongodb.MongoClient;
 import org.json.simple.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 
 public class Main {
 
@@ -95,11 +100,31 @@ public class Main {
       }
 
 
+        final Morphia morphia = new Morphia();
+        morphia.mapPackage("test");
+
+        final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
+
+        datastore.ensureIndexes();
+
+        final Hello saluto = new Hello("ciao");
+        final Hello saluto2 = new Hello("Bonjour");
+        final Hello saluto3 = new Hello ("Hi man");
+
+
+        datastore.save(saluto);
+        datastore.save(saluto3);
+        datastore.save(saluto2);
+
+
+       /* final Query<Hello> query = datastore.createQuery(Hello.class);
+        final List<Hello> sal = query.asList();
 
 
 
-
-
+        for( Hello x: sal)
+            System.out.println(x.getSaluto());
+        */
     }
 
 }
