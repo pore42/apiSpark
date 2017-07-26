@@ -2,6 +2,7 @@
 package test;
 import static spark.Spark.*;
 import java.io.FileReader;
+import java.util.Date;
 import java.util.List;
 
 
@@ -49,17 +50,17 @@ public class Main {
         });
     }
 
-    private static void inserisci(String saluto, String name, Datastore ds)
+    private static void inserisci(Qoodles q, String name, Datastore ds)
     {
-        Counter newCounter = ds.find(Counter.class).field("helloid").equal(name).get();
+        Counter newCounter = ds.find(Counter.class).field("qoodlesId").equal(name).get();
         long nuovoId = newCounter.getSeq();
 
 
-        Query<Counter> query = ds.createQuery(Counter.class).field("helloid").equal(name);
+        Query<Counter> query = ds.createQuery(Counter.class).field("qoodlesId").equal(name);
         UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
         ds.update(query, ops);
 
-        ds.save(new Hello(saluto, nuovoId));
+        ds.save(new Qoodles(q, nuovoId));
     }
 
 
@@ -129,25 +130,26 @@ public class Main {
 
 
         //inserisco con progressive id
-        inserisci("ciao", targetId, datastore);
-        inserisci("hi man", targetId, datastore);
-        inserisci("Bonjour", targetId, datastore);
+        Qoodles prova = new Qoodles((long) 0 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+
+        inserisci(prova, targetId, datastore);
 
 
-        final Query<Hello> primaQuery = datastore.createQuery(Hello.class);
-        final List<Hello> sal = primaQuery.asList();
 
-        List<Hello> tail = datastore.createQuery(Hello.class).filter("id <=", 1).asList();
+        final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
+        final List<Qoodles> sal = primaQuery.asList();
+
+        List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
 
 
         //mostro quello che ho inserito
-        for( Hello x: sal)
-            System.out.println(x.getSaluto());
+        for( Qoodles x: sal)
+            System.out.println(x.getTitolo());
 
 
 
-        for( Hello x: tail)
-            System.out.println(x.getSaluto());
+        for( Qoodles x: tail)
+            System.out.println(x.getTitolo());
     }
 
 }
