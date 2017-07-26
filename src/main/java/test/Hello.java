@@ -7,16 +7,27 @@ import org.mongodb.morphia.annotations.Id;
 @Entity
 public class Hello {
 
-    private static long globalId = 0;
     @Id
-    private long id = globalId++;
+    private long id ;
     private String saluto = "";
 
-    public Hello(String s )
+    public Hello(String saluto) {
+        this.saluto = saluto;
+    }
+
+    public Hello(String s, long i )
     {
         this.saluto = s;
-
+        this.id = i;
     }
+
+    public Hello()
+    {
+        this.saluto = "default value";
+        this.id = 0;
+    }
+
+
 
     public String getSaluto() {
         return saluto;
