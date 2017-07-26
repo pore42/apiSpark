@@ -49,10 +49,10 @@ public class Main {
       });
   }
 
-    public static void inserisci(String saluto, String name, Datastore ds)
+    private static void inserisci(String saluto, String name, Datastore ds)
     {
-        Counter nuovoCounter = ds.find(Counter.class).field("helloid").equal(name).get();
-        long nuovoId = nuovoCounter.getSeq();
+        Counter newCounter = ds.find(Counter.class).field("helloid").equal(name).get();
+        long nuovoId = newCounter.getSeq();
 
 
         Query<Counter> query = ds.createQuery(Counter.class).field("helloid").equal(name);
@@ -113,7 +113,7 @@ public class Main {
       ex.printStackTrace();
       }
 
-        
+
         final Morphia morphia = new Morphia();
         morphia.mapPackage("test");
 
@@ -137,14 +137,17 @@ public class Main {
         final Query<Hello> primaQuery = datastore.createQuery(Hello.class);
         final List<Hello> sal = primaQuery.asList();
 
+        List<Hello> tail = datastore.createQuery(Hello.class).filter("id <=", 1).asList();
+
+
         //mostro quello che ho inserito
         for( Hello x: sal)
             System.out.println(x.getSaluto());
 
 
 
-        /*for( Hello x: sal2)
-            System.out.println(x.getSaluto());*/
+        for( Hello x: tail)
+            System.out.println(x.getSaluto());
     }
 
 }
