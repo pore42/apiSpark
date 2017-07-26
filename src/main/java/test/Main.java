@@ -49,6 +49,8 @@ public class Main {
   }
 
 
+
+
     public static void main(String[] args) {
       final String from= "http://localhost:8080";
       final String how= "get";
@@ -105,9 +107,13 @@ public class Main {
 
         datastore.ensureIndexes();
 
-        final Hello saluto = new Hello("ciao");
+        final Hello saluto = new Hello("ciao", 0);
         final Hello saluto2 = new Hello("Bonjour");
         final Hello saluto3 = new Hello ("Hi man");
+
+        final Counter counter = new Counter("id", 0);
+
+
 
 
         datastore.save(saluto);
@@ -115,13 +121,20 @@ public class Main {
         datastore.save(saluto2);
 
 
+        datastore.save(counter);
 
         final Query<Hello> primaQuery = datastore.createQuery(Hello.class);
         final List<Hello> sal = primaQuery.asList();
 
-
+        final Query<Hello> secondaQuery = datastore.find(Hello.class);
+        final List<Hello> sal2 = secondaQuery.asList();
 
         for( Hello x: sal)
+            System.out.println(x.getSaluto());
+
+
+
+        for( Hello x: sal2)
             System.out.println(x.getSaluto());
     }
 
