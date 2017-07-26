@@ -9,14 +9,22 @@ public class Hello {
 
     private static long globalId = 0;
     @Id
-    private long id = globalId++;
+    private long id ;
     private String saluto = "";
 
     public Hello(String s )
     {
         this.saluto = s;
-
+        this.id = globalId++;
     }
+
+    public Hello()
+    {
+        this.saluto = "default value";
+        this.id = globalId++;
+    }
+
+
 
     public String getSaluto() {
         return saluto;

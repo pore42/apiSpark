@@ -1,10 +1,7 @@
 
 package test;
 import static spark.Spark.*;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -12,10 +9,11 @@ import com.mongodb.MongoClient;
 import org.json.simple.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
+
 
 public class Main {
 
@@ -117,14 +115,14 @@ public class Main {
         datastore.save(saluto2);
 
 
-       /* final Query<Hello> query = datastore.createQuery(Hello.class);
-        final List<Hello> sal = query.asList();
+
+        final Query<Hello> primaQuery = datastore.createQuery(Hello.class);
+        final List<Hello> sal = primaQuery.asList();
 
 
 
         for( Hello x: sal)
             System.out.println(x.getSaluto());
-        */
     }
 
 }
