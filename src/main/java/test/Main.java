@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
+import org.mongodb.morphia.query.UpdateOperations;
 
 
 public class Main {
@@ -47,6 +48,19 @@ public class Main {
           response.type("application/json");
       });
   }
+
+    public static void inserisci(String saluto, String name, Datastore ds)
+    {
+        Counter nuovoCounter = ds.find(Counter.class).field("helloid").equal(name).get();
+        long nuovoId = nuovoCounter.getSeq();
+
+
+        Query<Counter> query = ds.createQuery(Counter.class).field("helloid").equal(name);
+        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
+        ds.update(query, ops);
+
+        ds.save(new Hello(saluto, nuovoId));
+    }
 
 
 
@@ -99,7 +113,7 @@ public class Main {
       ex.printStackTrace();
       }
 
-
+        
         final Morphia morphia = new Morphia();
         morphia.mapPackage("test");
 
@@ -107,35 +121,30 @@ public class Main {
 
         datastore.ensureIndexes();
 
-        final Hello saluto = new Hello("ciao", 0);
-        final Hello saluto2 = new Hello("Bonjour");
-        final Hello saluto3 = new Hello ("Hi man");
-
+        //inizialization
         final Counter counter = new Counter("id", 0);
-
-
-
-
-        datastore.save(saluto);
-        datastore.save(saluto3);
-        datastore.save(saluto2);
-
-
         datastore.save(counter);
+        //targetid cioè l'id di Hello
+        String targetId = "id";
+
+
+        //inserisco con progressive id
+        inserisci("ciao", targetId, datastore);
+        inserisci("hi man", targetId, datastore);
+        inserisci("Bonjour", targetId, datastore);
+
 
         final Query<Hello> primaQuery = datastore.createQuery(Hello.class);
         final List<Hello> sal = primaQuery.asList();
 
-        final Query<Hello> secondaQuery = datastore.find(Hello.class);
-        final List<Hello> sal2 = secondaQuery.asList();
-
+        //mostro quello che ho inserito
         for( Hello x: sal)
             System.out.println(x.getSaluto());
 
 
 
-        for( Hello x: sal2)
-            System.out.println(x.getSaluto());
+        /*for( Hello x: sal2)
+            System.out.println(x.getSaluto());*/
     }
 
 }
