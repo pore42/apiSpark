@@ -55,11 +55,11 @@ public class Main {
 
     private static void inserisci(Qoodles q, String name, Datastore ds)
     {
-        Counter newCounter = ds.find(Counter.class).field("qoodlesId").equal(name).get();
+        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
         long nuovoId = newCounter.getSeq();
 
 
-        Query<Counter> query = ds.createQuery(Counter.class).field("qoodlesId").equal(name);
+        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
         UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
         ds.update(query, ops);
 
@@ -82,16 +82,15 @@ public class Main {
 
             final Morphia morphia = new Morphia();
             morphia.mapPackage("test");
-
             final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
 
             datastore.ensureIndexes();
 
             //inizialization
-            final Counter counter = new Counter("id", 0);
+            final Counter counter = new Counter("qoodlesId", 0);
             datastore.save(counter);
             //targetid cioè l'id di Hello
-            String targetId = "id";
+            String targetId = "qoodlesId";
 
 
             //inserisco con progressive id
@@ -158,13 +157,11 @@ public class Main {
             String provaJson = gson.toJson(sal);
 
             get("/list", (req, res) -> provaJson);
-            //List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
 
-
-            //mostro quello che ho inserito
+            /*mostro quello che ho inserito
             for( Qoodles x: sal)
             System.out.println(provaJson);
-
+            */
 
 
         }

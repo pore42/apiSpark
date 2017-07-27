@@ -7,25 +7,25 @@ import org.mongodb.morphia.annotations.Id;
 public class Counter {
 
     @Id
-    private String qoodlesId;
+    private String id;
     private long seq;
 
     public Counter() {
-        this.qoodlesId = "";
+        this.id = "";
         this.seq = 0;
     }
 
-    public Counter(String qoodlesId, long seq) {
-        this.qoodlesId = qoodlesId;
+    public Counter(String id, long seq) {
+        this.id = id;
         this.seq = seq;
     }
 
-    public String getqoodlesId() {
-        return qoodlesId;
+    public String getid() {
+        return id;
     }
 
-    public void setqoodlesId(String qoodlesId) {
-        this.qoodlesId = qoodlesId;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public long getSeq() {
