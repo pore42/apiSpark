@@ -130,16 +130,18 @@ public class Main {
 
 
         //inserisco con progressive id
-        Qoodles prova = new Qoodles((long) 0 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+        Qoodles prova = new Qoodles((long) 1 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+        Qoodles prova1 = new Qoodles((long) 2 , "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
+
 
         inserisci(prova, targetId, datastore);
-
+        inserisci(prova1, targetId, datastore);
 
 
         final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
         final List<Qoodles> sal = primaQuery.asList();
 
-        List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
+        //List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
 
 
         //mostro quello che ho inserito
@@ -147,9 +149,6 @@ public class Main {
             System.out.println(x.getTitolo());
 
 
-
-        for( Qoodles x: tail)
-            System.out.println(x.getTitolo());
     }
 
 }
