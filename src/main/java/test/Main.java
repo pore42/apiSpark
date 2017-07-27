@@ -95,12 +95,19 @@ public class Main {
 
 
             //inserisco con progressive id
-            Qoodles prova = new Qoodles((long) 1 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
-            Qoodles prova1 = new Qoodles((long) 2 , "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
+            Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+            Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
+            Qoodles q2 = new Qoodles( "Picnic", "Picnic in un giardino milanese", 15, new Date("October 17, 2017 14:30:00") );
+            Qoodles q3 = new Qoodles("TestOk", "Test per connessione con db", 200, new Date("October 11, 2017 14:30:00") );
+            Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
 
 
-            inserisci(prova, targetId, datastore);
-            inserisci(prova1, targetId, datastore);
+
+            inserisci(q, targetId, datastore);
+            inserisci(q1, targetId, datastore);
+            inserisci(q2, targetId, datastore);
+            inserisci(q3, targetId, datastore);
+            inserisci(q4, targetId, datastore);
 
 
 

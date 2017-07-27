@@ -26,9 +26,10 @@ public class Qoodles {
         this.dataChiusura = new Date();
     }
 
-    public Qoodles(long qoodlesId, String titolo, int partecipanti, Date dataChiusura) {
-        qoodlesId = qoodlesId;
+    public Qoodles( String titolo, String descrizione, int partecipanti, Date dataChiusura) {
+        this.qoodlesId = 0;
         this.titolo = titolo;
+        this.descrizione = descrizione;
         this.partecipanti = partecipanti;
         this.dataChiusura = dataChiusura;
     }
