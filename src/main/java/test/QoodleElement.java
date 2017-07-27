@@ -25,18 +25,6 @@ public class QoodleElement {
     }
 
 
-    public QoodleElement(QoodleElement q , long id){
-        this.elId = id;
-        this.name = q.name;
-        this.min = q.min;
-        this.max = q.max;
-        this.umoption = q.umoption;
-        this.coinoption = q.coinoption;
-        this.price = q.price;
-        this.counter = q.counter;
-        this.imgUrl = q.imgUrl;
-    }
-
 
 
 
