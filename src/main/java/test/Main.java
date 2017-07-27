@@ -2,6 +2,7 @@
 package test;
 import static spark.Spark.*;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
+
+import com.google.gson.Gson;
 
 
 public class Main {
@@ -76,14 +79,42 @@ public class Main {
         enableCORS(from, how , head);
 
         try{
-            JSONParser jsonParser = new JSONParser();
 
+            final Morphia morphia = new Morphia();
+            morphia.mapPackage("test");
+
+            final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
+
+            datastore.ensureIndexes();
+
+            //inizialization
+            final Counter counter = new Counter("id", 0);
+            datastore.save(counter);
+            //targetid cioè l'id di Hello
+            String targetId = "id";
+
+
+            //inserisco con progressive id
+            Qoodles prova = new Qoodles((long) 1 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+            Qoodles prova1 = new Qoodles((long) 2 , "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
+
+
+            inserisci(prova, targetId, datastore);
+            inserisci(prova1, targetId, datastore);
+
+
+
+
+
+
+
+            JSONParser jsonParser = new JSONParser();
+/*
             FileReader reader = new FileReader(filePath);
             JSONObject  jsonObject = (JSONObject) jsonParser.parse(reader);
             JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
+*/
 
-
-            get("/list", (req, res) -> jsonArray);
 
 
             FileReader viewReader = new FileReader(viewPath);
@@ -108,45 +139,32 @@ public class Main {
 
 
 
+
+
+
+
+
+            final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
+            final List<Qoodles> sal = primaQuery.asList();
+
+            Gson gson = new Gson();
+            String provaJson = gson.toJson(sal);
+
+            get("/list", (req, res) -> provaJson);
+            //List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
+
+
+            //mostro quello che ho inserito
+            for( Qoodles x: sal)
+            System.out.println(provaJson);
+
+
+
         }
         catch(Exception ex)
         {
             ex.printStackTrace();
         }
-
-
-        final Morphia morphia = new Morphia();
-        morphia.mapPackage("test");
-
-        final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
-
-        datastore.ensureIndexes();
-
-        //inizialization
-        final Counter counter = new Counter("id", 0);
-        datastore.save(counter);
-        //targetid cioè l'id di Hello
-        String targetId = "id";
-
-
-        //inserisco con progressive id
-        Qoodles prova = new Qoodles((long) 1 , "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
-        Qoodles prova1 = new Qoodles((long) 2 , "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
-
-
-        inserisci(prova, targetId, datastore);
-        inserisci(prova1, targetId, datastore);
-
-
-        final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
-        final List<Qoodles> sal = primaQuery.asList();
-
-        //List<Qoodles> tail = datastore.createQuery(Qoodles.class).filter("qoodlesId <=", 1).asList();
-
-
-        //mostro quello che ho inserito
-        for( Qoodles x: sal)
-            System.out.println(x.getTitolo());
 
 
     }
