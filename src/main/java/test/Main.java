@@ -80,6 +80,19 @@ public class Main {
         ds.save(new QoodleView(qv, nuovoId));
     }
 
+    private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
+    {
+        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
+        long nuovoId = newCounter.getSeq();
+
+
+        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
+        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
+        ds.update(query, ops);
+
+        ds.save(new QoodleElement(qe, nuovoId));
+    }
+
 
     public static void main(String[] args) {
         final String from= "http://localhost:8080";
@@ -141,7 +154,7 @@ public class Main {
 
 
             get("/view", (req, res) -> viewJson);
-*/
+
 
             FileReader createReader = new FileReader(createPath);
             JSONObject  createObject = (JSONObject) jsonParser.parse(createReader);
@@ -149,7 +162,7 @@ public class Main {
 
 
             get("/create", (req, res) -> createArray);
-
+*/
             post("/submit-new-qoodle", (req, res) -> req.body());
 
             post("/submit-qoodle-choices", (req, res) ->  req.body() );
@@ -181,9 +194,33 @@ public class Main {
 
 
 
-            QoodleElement qe = new QoodleElement(1l, "banana", 0, 99999, "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement qe = new QoodleElement(1l, "banana", 0, 99999, "kg", "€", 1.5f, 0, "_assets/img/bana.png" );
+            QoodleElement qe2 = new QoodleElement(2l, "MelaRossa", 0, 99999, "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement qe3 = new QoodleElement(3l, "Kiwi", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
+            QoodleElement qe4 = new QoodleElement(4l, "Pesca", 0, 99999, "", "€", 0.0f, 0, "_assets/img/bana.png" );
+            QoodleElement qe5 = new QoodleElement(5l, "Uva", 0, 99999, "", "€", 0.0f, 0, "_assets/img/bana.png" );
+            QoodleElement qe6 = new QoodleElement(6l, "Number of Vegetarian", 0, 99999, "", "€", 0.0f, 0, "_assets/img/kiwi.png" );
+            QoodleElement qe7 = new QoodleElement(7l, "Kiwi", 0, 99999, "bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
+            QoodleElement qe8 = new QoodleElement(8l, "Number of people", 0, 99999, "", "€", 4.0f, 0, "_assets/img/redApple.png" );
+
+
+
+
+
             ArrayList<QoodleElement> qeList = new ArrayList<QoodleElement>();
             qeList.add(qe);
+            qeList.add(qe2);
+            qeList.add(qe3);
+            qeList.add(qe4);
+            qeList.add(qe5);
+            qeList.add(qe6);
+            qeList.add(qe7);
+            qeList.add(qe8);
+
+
+
+
+
 
             QoodleView qv = new QoodleView(0l, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
 
@@ -202,9 +239,39 @@ public class Main {
 
 
 
-            System.out.println(viewJson);
+            //System.out.println(viewJson);
 
 
+            QoodleElement newQe = new QoodleElement(0l, "banana", 0, 99999, "kg", "€", 4.5f, 5, "_assets/img/bana.png" );
+            QoodleElement newQe2 = new QoodleElement(1l, "Intolleranti al lattosio", 0, 99999, "kg", "€", 0.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement newQe3 = new QoodleElement(2l, "celiaci", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
+
+
+            //inizialization
+            final Counter elementCounter = new Counter("elId", 0);
+            datastore.save(elementCounter);
+            //targetid cioè l'id di Hello
+            String elementTargetId = "elId";
+
+
+
+
+
+            inserisciNew(newQe, elementTargetId, datastore);
+            inserisciNew(newQe2, elementTargetId, datastore);
+            inserisciNew(newQe3, elementTargetId, datastore);
+
+
+
+            final Query<QoodleElement> elementQuery = datastore.createQuery(QoodleElement.class);
+            final List<QoodleElement> elements = elementQuery.asList();
+
+            String elementsJson = gson.toJson(elements);
+
+            get("/create", (req, res) -> elementsJson);
+
+
+            System.out.println(elementsJson);
 
         }
         catch(Exception ex)

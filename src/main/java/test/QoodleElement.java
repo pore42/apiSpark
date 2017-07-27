@@ -1,7 +1,11 @@
 package test;
 
-public class QoodleElement {
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
+@Entity
+public class QoodleElement {
+    @Id
     private long elId;
     private String name;
     private int min;
@@ -38,6 +42,18 @@ public class QoodleElement {
         this.price = price;
         this.counter = counter;
         this.imgUrl = imgUrl;
+    }
+
+    public QoodleElement(QoodleElement q, long id) {
+        this.elId = id;
+        this.name = q.name;
+        this.min = q.min;
+        this.max = q.max;
+        this.umoption = q.umoption;
+        this.coinoption = q.coinoption;
+        this.price = q.price;
+        this.counter = q.counter;
+        this.imgUrl = q.imgUrl;
     }
 
 
