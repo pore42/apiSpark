@@ -1,0 +1,129 @@
+package test;
+
+public class QoodleElement {
+
+    private long elId;
+    private String name;
+    private int min;
+    private int max;
+    private String umoption;
+    private String coinoption;
+    private float price;
+    private int counter;
+    private String imgUrl;
+
+    public QoodleElement() {
+        this.elId = 0;
+        this.name = "";
+        this.min = 0;
+        this.max = 99999;
+        this.umoption = "";
+        this.coinoption = "";
+        this.price = 0.0f;
+        this.counter = 0;
+        this.imgUrl = "";
+    }
+
+
+    public QoodleElement(QoodleElement q , long id){
+        this.elId = id;
+        this.name = q.name;
+        this.min = q.min;
+        this.max = q.max;
+        this.umoption = q.umoption;
+        this.coinoption = q.coinoption;
+        this.price = q.price;
+        this.counter = q.counter;
+        this.imgUrl = q.imgUrl;
+    }
+
+
+
+
+    public QoodleElement(long elId, String name, int min, int max, String umoption, String coinoption, float price, int counter, String imgUrl) {
+        this.elId = elId;
+        this.name = name;
+        this.min = min;
+        this.max = max;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = price;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
+    }
+
+
+    public long getElId() {
+        return elId;
+    }
+
+    public void setElId(long elId) {
+        this.elId = elId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public String getUmoption() {
+        return umoption;
+    }
+
+    public void setUmoption(String umoption) {
+        this.umoption = umoption;
+    }
+
+    public String getCoinoption() {
+        return coinoption;
+    }
+
+    public void setCoinoption(String coinoption) {
+        this.coinoption = coinoption;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+
+}

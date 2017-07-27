@@ -3,6 +3,7 @@ package test;
 import static spark.Spark.*;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,7 +67,18 @@ public class Main {
         ds.save(new Qoodles(q, nuovoId));
     }
 
+    private static void inserisciView(QoodleView qv, String name, Datastore ds)
+    {
+        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
+        long nuovoId = newCounter.getSeq();
 
+
+        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
+        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
+        ds.update(query, ops);
+
+        ds.save(new QoodleView(qv, nuovoId));
+    }
 
 
     public static void main(String[] args) {
@@ -115,11 +127,11 @@ public class Main {
 
 
             JSONParser jsonParser = new JSONParser();
+
 /*
             FileReader reader = new FileReader(filePath);
             JSONObject  jsonObject = (JSONObject) jsonParser.parse(reader);
             JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
-*/
 
 
 
@@ -129,6 +141,7 @@ public class Main {
 
 
             get("/view", (req, res) -> viewJson);
+*/
 
             FileReader createReader = new FileReader(createPath);
             JSONObject  createObject = (JSONObject) jsonParser.parse(createReader);
@@ -158,10 +171,39 @@ public class Main {
 
             get("/list", (req, res) -> provaJson);
 
-            /*mostro quello che ho inserito
-            for( Qoodles x: sal)
-            System.out.println(provaJson);
-            */
+
+
+
+            final Counter counterView = new Counter("qoodleViewId", 0);
+            datastore.save(counter);
+
+
+
+
+
+            QoodleElement qe = new QoodleElement(1l, "banana", 0, 99999, "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
+            ArrayList<QoodleElement> qeList = new ArrayList<QoodleElement>();
+            qeList.add(qe);
+
+            QoodleView qv = new QoodleView(0l, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
+
+
+            String targetViewId = "qoodlesId";
+            inserisciView(qv, targetViewId, datastore);
+
+
+
+            final Query<QoodleView> viewQuery = datastore.createQuery(QoodleView.class);
+            final QoodleView view = viewQuery.asList().get(0);
+
+            String viewJson = gson.toJson(view);
+
+            get("/view", (req, res) -> viewJson);
+
+
+
+            System.out.println(viewJson);
+
 
 
         }
