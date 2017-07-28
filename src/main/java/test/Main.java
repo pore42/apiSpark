@@ -1,8 +1,6 @@
 
 package test;
 import static spark.Spark.*;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,10 +20,7 @@ import com.google.gson.Gson;
 
 
 public class Main {
-
-    private static final String filePath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-list.json";
-    private static final String viewPath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-view.json";
-    private static final String createPath = "/home/jab/workspace/spark/src/main/java/dati/qoodle-create.json";
+    
 
 
 
