@@ -148,7 +148,7 @@ public class Main {
 
 
             final Counter counterView = new Counter("qoodleViewId");
-            datastore.save(counter);
+            datastore.save(counterView);
 
 
 
