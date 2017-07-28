@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 
 
 public class Main {
-    
+
 
 
 
@@ -49,7 +49,7 @@ public class Main {
         });
     }
 
-    private static void inserisci(Qoodles q, String name, Datastore ds)
+    private static void inserisciList(Qoodles q, String name, Datastore ds)
     {
         Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
         long nuovoId = newCounter.getSeq();
@@ -122,11 +122,11 @@ public class Main {
 
 
 
-            inserisci(q, targetId, datastore);
-            inserisci(q1, targetId, datastore);
-            inserisci(q2, targetId, datastore);
-            inserisci(q3, targetId, datastore);
-            inserisci(q4, targetId, datastore);
+            inserisciList(q, targetId, datastore);
+            inserisciList(q1, targetId, datastore);
+            inserisciList(q2, targetId, datastore);
+            inserisciList(q3, targetId, datastore);
+            inserisciList(q4, targetId, datastore);
 
 
 
