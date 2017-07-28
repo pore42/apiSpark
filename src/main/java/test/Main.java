@@ -51,32 +51,26 @@ public class Main {
 
     private static void inserisciList(Qoodles q, String name, Datastore ds)
     {
-        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
-        long nuovoId = newCounter.getSeq();
-
-
-        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
-        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
-        ds.update(query, ops);
+        long nuovoId = inserisci(name, ds);
 
         ds.save(new Qoodles(q, nuovoId));
     }
 
     private static void inserisciView(QoodleView qv, String name, Datastore ds)
     {
-        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
-        long nuovoId = newCounter.getSeq();
-
-
-        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
-        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
-        ds.update(query, ops);
+        long nuovoId = inserisci(name, ds);
 
         ds.save(new QoodleView(qv, nuovoId));
     }
 
     private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
     {
+        long nuovoId = inserisci(name, ds);
+
+        ds.save(new QoodleElement(qe, nuovoId));
+    }
+
+    private static long inserisci(String name, Datastore ds) {
         Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
         long nuovoId = newCounter.getSeq();
 
@@ -84,8 +78,7 @@ public class Main {
         Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
         UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
         ds.update(query, ops);
-
-        ds.save(new QoodleElement(qe, nuovoId));
+        return nuovoId;
     }
 
 
