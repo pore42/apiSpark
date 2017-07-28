@@ -7,8 +7,6 @@ import java.util.List;
 
 
 import com.mongodb.MongoClient;
-import org.json.simple.*;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import org.mongodb.morphia.Datastore;
@@ -103,7 +101,7 @@ public class Main {
 
 
             //inizialization
-            final Counter counter = new Counter("qoodlesId", 0);
+            final Counter counter = new Counter("qoodlesId");
             datastore.save(counter);
             //targetid cioè l'id di Hello
             String targetId = "qoodlesId";
@@ -125,35 +123,6 @@ public class Main {
             inserisciList(q4, targetId, datastore);
 
 
-
-
-
-
-
-            JSONParser jsonParser = new JSONParser();
-
-/*
-            FileReader reader = new FileReader(filePath);
-            JSONObject  jsonObject = (JSONObject) jsonParser.parse(reader);
-            JSONArray jsonArray = (JSONArray) jsonObject.get("qoo");
-
-
-
-            FileReader viewReader = new FileReader(viewPath);
-            JSONObject  viewJson = (JSONObject) jsonParser.parse(viewReader);
-
-
-
-            get("/view", (req, res) -> viewJson);
-
-
-            FileReader createReader = new FileReader(createPath);
-            JSONObject  createObject = (JSONObject) jsonParser.parse(createReader);
-            JSONArray createArray = (JSONArray) createObject.get("ele");
-
-
-            get("/create", (req, res) -> createArray);
-*/
             post("/submit-new-qoodle", (req, res) -> req.body());
 
             post("/submit-qoodle-choices", (req, res) ->  req.body() );
@@ -178,7 +147,7 @@ public class Main {
 
 
 
-            final Counter counterView = new Counter("qoodleViewId", 0);
+            final Counter counterView = new Counter("qoodleViewId");
             datastore.save(counter);
 
 
@@ -239,7 +208,7 @@ public class Main {
 
 
             //inizialization
-            final Counter elementCounter = new Counter("elId", 0);
+            final Counter elementCounter = new Counter("elId");
             datastore.save(elementCounter);
             //targetid cioè l'id di Hello
             String elementTargetId = "elId";
