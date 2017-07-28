@@ -29,7 +29,17 @@ public class QoodleElement {
     }
 
 
-
+    public QoodleElement(long elId, String name, String umoption, String coinoption, float price, int counter, String imgUrl) {
+        this.elId = elId;
+        this.name = name;
+        this.min = 0;
+        this.max = 99999;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = price;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
+    }
 
 
     public QoodleElement(long elId, String name, int min, int max, String umoption, String coinoption, float price, int counter, String imgUrl) {
