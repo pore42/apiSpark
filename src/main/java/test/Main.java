@@ -80,6 +80,12 @@ public class Main {
     }
 
 
+    public static void progressiveId(String targetId, Datastore ds)
+    {
+        final Counter counter = new Counter(targetId);
+        ds.save(counter);
+    }
+
     public static void main(String[] args) {
         final String from= "http://localhost:8080";
         final String how= "get";
@@ -99,12 +105,9 @@ public class Main {
 
         try{
 
-
-            //inizialization
-            final Counter counter = new Counter("qoodlesId");
-            datastore.save(counter);
-            //targetid cioè l'id di Hello
             String targetId = "qoodlesId";
+
+            progressiveId(targetId, datastore);
 
 
             //inserisco con progressive id
@@ -147,8 +150,9 @@ public class Main {
 
 
 
-            final Counter counterView = new Counter("qoodleViewId");
-            datastore.save(counterView);
+            String targetViewId = "qoodlesId";
+
+            progressiveId(targetViewId, datastore);
 
 
 
@@ -185,7 +189,6 @@ public class Main {
             QoodleView qv = new QoodleView(0l, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
 
 
-            String targetViewId = "qoodlesId";
             inserisciView(qv, targetViewId, datastore);
 
 
@@ -207,11 +210,11 @@ public class Main {
             QoodleElement newQe3 = new QoodleElement(2l, "celiaci", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
 
 
-            //inizialization
-            final Counter elementCounter = new Counter("elId");
-            datastore.save(elementCounter);
-            //targetid cioè l'id di Hello
             String elementTargetId = "elId";
+
+
+
+            progressiveId(elementTargetId, datastore);
 
 
 
