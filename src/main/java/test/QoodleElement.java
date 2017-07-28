@@ -41,6 +41,18 @@ public class QoodleElement {
         this.imgUrl = imgUrl;
     }
 
+    public QoodleElement(long elId, String name, String umoption, String coinoption, int counter, String imgUrl) {
+        this.elId = elId;
+        this.name = name;
+        this.min = 0;
+        this.max = 99999;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = 0.0f;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
+    }
+
 
     public QoodleElement(long elId, String name, int min, int max, String umoption, String coinoption, float price, int counter, String imgUrl) {
         this.elId = elId;

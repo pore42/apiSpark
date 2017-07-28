@@ -160,10 +160,10 @@ public class Main {
 
             QoodleElement qe = new QoodleElement(1l, "banana", "kg", "€", 1.5f, 0, "_assets/img/bana.png" );
             QoodleElement qe2 = new QoodleElement(2l, "MelaRossa",  "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
-            QoodleElement qe3 = new QoodleElement(3l, "Kiwi", "", "", 0.0f, 0, "_assets/img/kiwi.png" );
-            QoodleElement qe4 = new QoodleElement(4l, "Pesca", "", "€", 0.0f, 0, "_assets/img/bana.png" );
-            QoodleElement qe5 = new QoodleElement(5l, "Uva", "", "€", 0.0f, 0, "_assets/img/bana.png" );
-            QoodleElement qe6 = new QoodleElement(6l, "Number of Vegetarian","", "€", 0.0f, 0, "_assets/img/kiwi.png" );
+            QoodleElement qe3 = new QoodleElement(3l, "Kiwi", "", "", 0, "_assets/img/kiwi.png" );
+            QoodleElement qe4 = new QoodleElement(4l, "Pesca", "", "€",0, "_assets/img/bana.png" );
+            QoodleElement qe5 = new QoodleElement(5l, "Uva", "", "€", 0, "_assets/img/bana.png" );
+            QoodleElement qe6 = new QoodleElement(6l, "Number of Vegetarian","", "€", 0, "_assets/img/kiwi.png" );
             QoodleElement qe7 = new QoodleElement(7l, "Kiwi","bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
             QoodleElement qe8 = new QoodleElement(8l, "Number of people","", "€", 4.0f, 0, "_assets/img/redApple.png" );
 
