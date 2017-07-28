@@ -91,13 +91,16 @@ public class Main {
 
         enableCORS(from, how , head);
 
+        final Morphia morphia = new Morphia();
+        morphia.mapPackage("test");
+        final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
+
+        datastore.ensureIndexes();
+
+
+
         try{
 
-            final Morphia morphia = new Morphia();
-            morphia.mapPackage("test");
-            final Datastore datastore = morphia.createDatastore(new MongoClient(), "morphia_example");
-
-            datastore.ensureIndexes();
 
             //inizialization
             final Counter counter = new Counter("qoodlesId", 0);
