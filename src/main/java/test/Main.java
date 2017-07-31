@@ -40,7 +40,6 @@ public class Main {
             Insertable.progressiveId(targetId, datastore);
 
 
-            //inserisco con progressive id
             Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
             q.insert( targetId, datastore);
             Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
@@ -118,7 +117,7 @@ public class Main {
 
 
 
-            QoodleView qv = new QoodleView(0L, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
+            QoodleView qv = new QoodleView( "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
 
 
             qv.insert(targetViewId, datastore);
