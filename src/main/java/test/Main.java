@@ -24,10 +24,6 @@ public class Main {
         final String head= "*";
 
 
-        /*
-        enableCORS(from, how , head);*/
-
-
       Inizialization init = new Inizialization(from, how, head);
       init.enableCORS();
 
@@ -94,20 +90,20 @@ public class Main {
 
 
 
-            QoodleElement qe = new QoodleElement(1l, "banana", "kg", "€", 1.5f, 0, "_assets/img/bana.png" );
-            QoodleElement qe2 = new QoodleElement(2l, "MelaRossa",  "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
-            QoodleElement qe3 = new QoodleElement(3l, "Kiwi", "", "", 0, "_assets/img/kiwi.png" );
-            QoodleElement qe4 = new QoodleElement(4l, "Pesca", "", "€",0, "_assets/img/bana.png" );
-            QoodleElement qe5 = new QoodleElement(5l, "Uva", "", "€", 0, "_assets/img/bana.png" );
-            QoodleElement qe6 = new QoodleElement(6l, "Number of Vegetarian","", "€", 0, "_assets/img/kiwi.png" );
-            QoodleElement qe7 = new QoodleElement(7l, "Kiwi","bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
-            QoodleElement qe8 = new QoodleElement(8l, "Number of people","", "€", 0.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement qe = new QoodleElement(1L, "banana", "kg", "€", 1.5f, 0, "_assets/img/bana.png" );
+            QoodleElement qe2 = new QoodleElement(2L, "MelaRossa",  "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement qe3 = new QoodleElement(3L, "Kiwi", "", "", 0, "_assets/img/kiwi.png" );
+            QoodleElement qe4 = new QoodleElement(4L, "Pesca", "", "€",0, "_assets/img/bana.png" );
+            QoodleElement qe5 = new QoodleElement(5L, "Uva", "", "€", 0, "_assets/img/bana.png" );
+            QoodleElement qe6 = new QoodleElement(6L, "Number of Vegetarian","", "€", 0, "_assets/img/kiwi.png" );
+            QoodleElement qe7 = new QoodleElement(7L, "Kiwi","bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
+            QoodleElement qe8 = new QoodleElement(8L, "Number of people","", "€", 0.0f, 0, "_assets/img/redApple.png" );
 
 
 
 
 
-            ArrayList<QoodleElement> qeList = new ArrayList<QoodleElement>();
+            ArrayList<QoodleElement> qeList = new ArrayList<>();
             qeList.add(qe);
             qeList.add(qe2);
             qeList.add(qe3);
@@ -122,7 +118,7 @@ public class Main {
 
 
 
-            QoodleView qv = new QoodleView(0l, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
+            QoodleView qv = new QoodleView(0L, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
 
 
             qv.insert(targetViewId, datastore);
