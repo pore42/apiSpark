@@ -45,7 +45,7 @@ public class Inizialization {
     }
 
 
-    public void enableCORS() {
+    protected void enableCORS() {
 
         options("/*", (request, response) -> {
 
@@ -70,7 +70,7 @@ public class Inizialization {
         });
     }
 
-    public Datastore createDatastore(String pack, String dbName)
+    protected Datastore createDatastore(String pack, String dbName)
     {
         final Morphia morphia = new Morphia();
         morphia.mapPackage(pack);
