@@ -7,12 +7,10 @@ import java.util.List;
 
 
 import com.mongodb.MongoClient;
-import org.json.simple.parser.JSONParser;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
 
 import com.google.gson.Gson;
 
@@ -46,7 +44,7 @@ public class Main {
             response.type("application/json");
         });
     }
-    
+
     public static void main(String[] args) {
         final String from= "http://localhost:8080";
         final String how= "get";
