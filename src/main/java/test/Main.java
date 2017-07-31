@@ -46,14 +46,7 @@ public class Main {
             response.type("application/json");
         });
     }
-
-
-    public static void progressiveId(String targetId, Datastore ds)
-    {
-        final Counter counter = new Counter(targetId);
-        ds.save(counter);
-    }
-
+    
     public static void main(String[] args) {
         final String from= "http://localhost:8080";
         final String how= "get";
@@ -122,7 +115,7 @@ public class Main {
 
             String targetViewId = "qoodleViewId";
 
-            progressiveId(targetViewId, datastore);
+            Insertable.progressiveId(targetViewId, datastore);
 
 
 
@@ -184,7 +177,7 @@ public class Main {
 
 
 
-            progressiveId(elementTargetId, datastore);
+            Insertable.progressiveId(elementTargetId, datastore);
 
 
 
