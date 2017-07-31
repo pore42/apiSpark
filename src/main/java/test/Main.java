@@ -46,27 +46,27 @@ public class Main {
             response.type("application/json");
         });
     }
-
+/*
     private static void inserisciList(Qoodles q, String name, Datastore ds)
     {
         long nuovoId = inserisci(name, ds);
 
         ds.save(new Qoodles(q, nuovoId));
     }
+*/
+        private static void inserisciView(QoodleView qv, String name, Datastore ds)
+        {
+            long nuovoId = inserisci(name, ds);
 
-    private static void inserisciView(QoodleView qv, String name, Datastore ds)
-    {
-        long nuovoId = inserisci(name, ds);
+            ds.save(new QoodleView(qv, nuovoId));
+        }
 
-        ds.save(new QoodleView(qv, nuovoId));
-    }
+        private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
+        {
+            long nuovoId = inserisci(name, ds);
 
-    private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
-    {
-        long nuovoId = inserisci(name, ds);
-
-        ds.save(new QoodleElement(qe, nuovoId));
-    }
+            ds.save(new QoodleElement(qe, nuovoId));
+        }
 
     private static long inserisci(String name, Datastore ds) {
         Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
@@ -118,13 +118,10 @@ public class Main {
             Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
 
 
-
-            inserisciList(q, targetId, datastore);
-            inserisciList(q1, targetId, datastore);
-            inserisciList(q2, targetId, datastore);
-            inserisciList(q3, targetId, datastore);
-            inserisciList(q4, targetId, datastore);
-
+            q.insert(q, targetId, datastore);
+            q.insert(q2, targetId, datastore);
+            q.insert(q3, targetId, datastore);
+            q.insert(q4, targetId, datastore);
 
             post("/submit-new-qoodle", (req, res) -> req.body());
 

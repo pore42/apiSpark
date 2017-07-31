@@ -1,11 +1,12 @@
 package test;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import java.util.Date;
 
 @Entity
-public class Qoodles {
+public class Qoodles extends Insertable{
 
 
     @Id
@@ -95,5 +96,12 @@ public class Qoodles {
     }
 
 
+    @Override
+    public void insert(Insertable i, String name, Datastore ds) {
+        long nuovoId = inserisci(name, ds);
+        if ( i instanceof Qoodles){
+            ((Qoodles) i).setQoodlesId(nuovoId);
+        }
 
+    }
 }
