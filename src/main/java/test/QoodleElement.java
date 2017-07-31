@@ -41,6 +41,16 @@ public class QoodleElement extends Insertable{
         this.imgUrl = imgUrl;
     }
 
+
+    public QoodleElement(String name, String umoption, String coinoption, float price, int counter, String imgUrl) {
+        this.name = name;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = price;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
+    }
+
     public QoodleElement(long elId, String name, String umoption, float price, int counter, String imgUrl) {
         this.elId = elId;
         this.name = name;
@@ -73,16 +83,25 @@ public class QoodleElement extends Insertable{
         this.imgUrl = imgUrl;
     }
 
-    public QoodleElement(QoodleElement q, long id) {
-        this.elId = id;
-        this.name = q.name;
-        this.min = q.min;
-        this.max = q.max;
-        this.umoption = q.umoption;
-        this.coinoption = q.coinoption;
-        this.price = q.price;
-        this.counter = q.counter;
-        this.imgUrl = q.imgUrl;
+    public QoodleElement(String name, int min, int max, String umoption, String coinoption, float price, int counter, String imgUrl) {
+        this.name = name;
+        this.min = min;
+        this.max = max;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = price;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
+    }
+    public QoodleElement(String name, int min, int max, String coinoption, float price, int counter, String imgUrl) {
+        this.name = name;
+        this.min = min;
+        this.max = max;
+        this.umoption = umoption;
+        this.coinoption = coinoption;
+        this.price = price;
+        this.counter = counter;
+        this.imgUrl = imgUrl;
     }
 
 
@@ -162,7 +181,7 @@ public class QoodleElement extends Insertable{
     @Override
     public void insert( String name, Datastore ds) {
 
-        long nuovoId = inserisci(name, ds);
+        long nuovoId = this.inserisci(name, ds);
             this.setElId(nuovoId);
             ds.save(this);
 

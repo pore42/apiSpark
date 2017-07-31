@@ -94,7 +94,7 @@ public class QoodleView extends Insertable{
 
     @Override
     public void insert(String name, Datastore ds) {
-        long nuovoId = inserisci(name, ds);
+        long nuovoId = this.inserisci(name, ds);
         this.setQoodleViewId(nuovoId);
         ds.save(this);
 

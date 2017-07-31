@@ -60,7 +60,7 @@ public class Qoodles extends Insertable{
     }
 
     public void setQoodlesId(long qoodlesId) {
-        qoodlesId = qoodlesId;
+        this.qoodlesId = qoodlesId;
     }
 
     public String getTitolo() {

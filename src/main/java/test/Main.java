@@ -46,38 +46,6 @@ public class Main {
             response.type("application/json");
         });
     }
-    /*
-        private static void inserisciList(Qoodles q, String name, Datastore ds)
-        {
-            long nuovoId = inserisci(name, ds);
-
-            ds.save(new Qoodles(q, nuovoId));
-        }
-
-    private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
-    {
-        long nuovoId = inserisci(name, ds);
-        ds.save(new QoodleElement(qe, nuovoId));
-
-    }
-*/
-        private static void inserisciView(QoodleView qv, String name, Datastore ds)
-        {
-            long nuovoId = inserisci(name, ds);
-
-            ds.save(new QoodleView(qv, nuovoId));
-        }
-
-    private static long inserisci(String name, Datastore ds) {
-        Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();
-        long nuovoId = newCounter.getSeq();
-
-
-        Query<Counter> query = ds.createQuery(Counter.class).field("id").equal(name);
-        UpdateOperations<Counter> ops= ds.createUpdateOperations(Counter.class).set("seq", ++nuovoId);
-        ds.update(query, ops);
-        return nuovoId;
-    }
 
 
     public static void progressiveId(String targetId, Datastore ds)
@@ -107,19 +75,21 @@ public class Main {
 
             String targetId = "qoodlesId";
 
-            progressiveId(targetId, datastore);
+            Insertable.progressiveId(targetId, datastore);
 
 
             //inserisco con progressive id
             Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
+            q.insert( targetId, datastore);
             Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
+            q1.insert(targetId, datastore);
             Qoodles q2 = new Qoodles( "Picnic", "Picnic in un giardino milanese", 15, new Date("October 17, 2017 14:30:00") );
             Qoodles q3 = new Qoodles("TestOk", "Test per connessione con db", 200, new Date("October 11, 2017 14:30:00") );
             Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
 
 
 
-            q.insert( targetId, datastore);
+
             q1.insert(targetId, datastore);
             q2.insert(targetId, datastore);
             q3.insert(targetId, datastore);
@@ -150,7 +120,7 @@ public class Main {
 
 
 
-            String targetViewId = "qoodlesId";
+            String targetViewId = "qoodleViewId";
 
             progressiveId(targetViewId, datastore);
 
@@ -165,7 +135,7 @@ public class Main {
             QoodleElement qe5 = new QoodleElement(5l, "Uva", "", "€", 0, "_assets/img/bana.png" );
             QoodleElement qe6 = new QoodleElement(6l, "Number of Vegetarian","", "€", 0, "_assets/img/kiwi.png" );
             QoodleElement qe7 = new QoodleElement(7l, "Kiwi","bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
-            QoodleElement qe8 = new QoodleElement(8l, "Number of people","", "€", 4.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement qe8 = new QoodleElement(8l, "Number of people","", "€", 0.0f, 0, "_assets/img/redApple.png" );
 
 
 
@@ -189,7 +159,7 @@ public class Main {
             QoodleView qv = new QoodleView(0l, "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
 
 
-            inserisciView(qv, targetViewId, datastore);
+            qv.insert(targetViewId, datastore);
 
 
 
@@ -205,9 +175,9 @@ public class Main {
             //System.out.println(viewJson);
 
 
-            QoodleElement newQe = new QoodleElement(0l, "banana", 0, 99999, "kg", "€", 4.5f, 5, "_assets/img/bana.png" );
-            QoodleElement newQe2 = new QoodleElement(1l, "Intolleranti al lattosio", 0, 99999, "kg", "€", 0.0f, 0, "_assets/img/redApple.png" );
-            QoodleElement newQe3 = new QoodleElement(2l, "celiaci", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
+            QoodleElement newQe = new QoodleElement( "banana", 0, 99999, "kg", "€", 4.5f, 5, "_assets/img/bana.png" );
+            QoodleElement newQe2 = new QoodleElement("Intolleranti al lattosio", 0, 99999, "€", 0.0f, 0, "_assets/img/redApple.png" );
+            QoodleElement newQe3 = new QoodleElement("celiaci", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
 
 
             String elementTargetId = "elId";
