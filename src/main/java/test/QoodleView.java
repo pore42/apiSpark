@@ -1,5 +1,6 @@
 package test;
 
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
-public class QoodleView {
+public class QoodleView extends Insertable{
 
     @Id
     private long qoodleViewId;
@@ -91,4 +92,10 @@ public class QoodleView {
         this.ele = ele;
     }
 
+    @Override
+    public void insert(String name, Datastore ds) {
+        long nuovoId = inserisci(name, ds);
+        this.setQoodleViewId(nuovoId);
+
+    }
 }

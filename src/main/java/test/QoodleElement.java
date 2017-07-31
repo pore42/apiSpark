@@ -1,10 +1,12 @@
 package test;
 
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 @Entity
-public class QoodleElement {
+public class QoodleElement extends Insertable{
+
     @Id
     private long elId;
     private String name;
@@ -157,4 +159,11 @@ public class QoodleElement {
     }
 
 
+    @Override
+    public void insert( String name, Datastore ds) {
+
+        long nuovoId = inserisci(name, ds);
+            this.setElId(nuovoId);
+
+    }
 }

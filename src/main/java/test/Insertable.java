@@ -8,7 +8,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 public abstract class Insertable {
 
 
-    public abstract void insert(Insertable i, String name, Datastore ds);
+    public abstract void insert(String name, Datastore ds);
 
     public static long inserisci(String name, Datastore ds) {
         Counter newCounter = ds.find(Counter.class).field("id").equal(name).get();

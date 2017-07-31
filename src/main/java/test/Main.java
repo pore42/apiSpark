@@ -46,14 +46,14 @@ public class Main {
             response.type("application/json");
         });
     }
-/*
-    private static void inserisciList(Qoodles q, String name, Datastore ds)
-    {
-        long nuovoId = inserisci(name, ds);
+    /*
+        private static void inserisciList(Qoodles q, String name, Datastore ds)
+        {
+            long nuovoId = inserisci(name, ds);
 
-        ds.save(new Qoodles(q, nuovoId));
-    }
-*/
+            ds.save(new Qoodles(q, nuovoId));
+        }
+    */
         private static void inserisciView(QoodleView qv, String name, Datastore ds)
         {
             long nuovoId = inserisci(name, ds);
@@ -118,10 +118,13 @@ public class Main {
             Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
 
 
-            q.insert(q, targetId, datastore);
-            q.insert(q2, targetId, datastore);
-            q.insert(q3, targetId, datastore);
-            q.insert(q4, targetId, datastore);
+
+            q.insert( targetId, datastore);
+            q1.insert(targetId, datastore);
+            q2.insert(targetId, datastore);
+            q3.insert(targetId, datastore);
+            q4.insert(targetId, datastore);
+
 
             post("/submit-new-qoodle", (req, res) -> req.body());
 

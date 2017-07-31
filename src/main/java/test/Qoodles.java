@@ -97,11 +97,9 @@ public class Qoodles extends Insertable{
 
 
     @Override
-    public void insert(Insertable i, String name, Datastore ds) {
+    public void insert( String name, Datastore ds) {
         long nuovoId = inserisci(name, ds);
-        if ( i instanceof Qoodles){
-            ((Qoodles) i).setQoodlesId(nuovoId);
-        }
+            this.setQoodlesId(nuovoId);
 
     }
 }
