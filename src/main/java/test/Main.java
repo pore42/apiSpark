@@ -53,19 +53,19 @@ public class Main {
 
             ds.save(new Qoodles(q, nuovoId));
         }
-    */
+
+    private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
+    {
+        long nuovoId = inserisci(name, ds);
+        ds.save(new QoodleElement(qe, nuovoId));
+
+    }
+*/
         private static void inserisciView(QoodleView qv, String name, Datastore ds)
         {
             long nuovoId = inserisci(name, ds);
 
             ds.save(new QoodleView(qv, nuovoId));
-        }
-
-        private static void inserisciNew(QoodleElement qe, String name, Datastore ds)
-        {
-            long nuovoId = inserisci(name, ds);
-
-            ds.save(new QoodleElement(qe, nuovoId));
         }
 
     private static long inserisci(String name, Datastore ds) {
@@ -220,9 +220,9 @@ public class Main {
 
 
 
-            inserisciNew(newQe, elementTargetId, datastore);
-            inserisciNew(newQe2, elementTargetId, datastore);
-            inserisciNew(newQe3, elementTargetId, datastore);
+            newQe.insert(elementTargetId, datastore);
+            newQe2.insert(elementTargetId, datastore);
+            newQe3.insert(elementTargetId, datastore);
 
 
 

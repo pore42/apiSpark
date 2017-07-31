@@ -164,6 +164,7 @@ public class QoodleElement extends Insertable{
 
         long nuovoId = inserisci(name, ds);
             this.setElId(nuovoId);
+            ds.save(this);
 
     }
 }
