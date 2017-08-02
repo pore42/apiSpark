@@ -13,84 +13,47 @@ public class Qoodle extends Insertable{
     private long qoodleId;
     private String title;
     private String description;
-    private String chiusura;
-    private ArrayList<QoodleElement> ele;
-    //private ArrayList<Voti> voti;
-
-    public Qoodle(String title, String description, String chiusura, ArrayList<QoodleElement> ele) {
-      //  this.qoodleViewId = 0;
-        this.title = title;
-        this.description = description;
-        this.chiusura = chiusura;
-        this.ele = ele;
-    }
-
-    public Qoodle(long qoodleViewId, String title, String description, String chiusura, ArrayList<QoodleElement> ele) {
-        //this.qoodleViewId = qoodleViewId;
-        this.title = title;
-        this.description = description;
-        this.chiusura = chiusura;
-        this.ele = ele;
-    }
+    private String closingDate;
+    private ArrayList<QoodleElement> qeList;
+    private ArrayList<Vote> qvotes;
 
     public Qoodle() {
-        //this.qoodleViewId = 0;
+        this.qoodleId = -1L;
         this.title = "";
         this.description = "";
-        this.chiusura = "";
-        this.ele = new ArrayList<QoodleElement>();
+        this.closingDate = "";
+        this.qeList = null;
+        this.qvotes = null;
+
     }
 
-
-    public Qoodle(Qoodle q , long id ) {
-        //this.qoodleViewId = id;
-        this.title = q.title;
-        this.description = q.description;
-        this.chiusura = q.chiusura;
-        this.ele = q.ele;
-    }
-
-
-
-   /* public long getQoodleViewId() {
-        return qoodleViewId;
-    }
-
-    public void setQoodleViewId(long qoodleViewId) {
-        this.qoodleViewId = qoodleViewId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-*/
-    public void setTitle(String title) {
+    public Qoodle(String title, String description, String closingDate, ArrayList<QoodleElement> qeList) {
+        this.qoodleId = 0;
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
+        this.closingDate = closingDate;
+        this.qeList = qeList;
     }
 
-    public String getChiusura() {
-        return chiusura;
+    public Qoodle(long qoodleId, String title, String description, String closingDate, ArrayList<QoodleElement> qeList, ArrayList<Vote> qvotes) {
+        this.qoodleId = qoodleId;
+        this.title = title;
+        this.description = description;
+        this.closingDate = closingDate;
+        this.qeList = qeList;
+        this.qvotes = qvotes;
     }
 
-    public void setChiusura(String chiusura) {
-        this.chiusura = chiusura;
+    public Qoodle(long qoodleId, String title, String description, String closingDate, ArrayList<QoodleElement> qeList) {
+        this.qoodleId = qoodleId;
+        this.title = title;
+        this.description = description;
+        this.closingDate = closingDate;
+        this.qeList = qeList;
     }
 
-    public ArrayList<QoodleElement> getEle() {
-        return ele;
-    }
 
-    public void setEle(ArrayList<QoodleElement> ele) {
-        this.ele = ele;
-    }
+
 
     @Override
     public void insert(String name, Datastore ds) {
