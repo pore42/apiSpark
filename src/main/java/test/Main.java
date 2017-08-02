@@ -24,8 +24,8 @@ public class Main {
         final String head= "*";
 
 
-      Inizialization init = new Inizialization(from, how, head);
-      init.enableCORS();
+        Inizialization init = new Inizialization(from, how, head);
+        init.enableCORS();
 
         final Datastore datastore = init.createDatastore("test", "morphia_example");
 
@@ -34,6 +34,17 @@ public class Main {
 
 
         try{
+            post("/qoodles", (req, res) ->
+            {
+               System.out.println(req.body().toString());
+
+               return  req.body();
+            }
+            );
+
+            post("/submit-qoodle-choices", (req, res) ->  req.body() );
+
+
 
             String targetId = "qoodlesId";
 
@@ -41,33 +52,18 @@ public class Main {
 
 
             Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
-            q.insert( targetId, datastore);
             Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
-            q1.insert(targetId, datastore);
             Qoodles q2 = new Qoodles( "Picnic", "Picnic in un giardino milanese", 15, new Date("October 17, 2017 14:30:00") );
             Qoodles q3 = new Qoodles("TestOk", "Test per connessione con db", 200, new Date("October 11, 2017 14:30:00") );
             Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
 
 
 
-
+            q.insert( targetId, datastore);
             q1.insert(targetId, datastore);
             q2.insert(targetId, datastore);
             q3.insert(targetId, datastore);
             q4.insert(targetId, datastore);
-
-
-            post("/submit-new-qoodle", (req, res) -> req.body());
-
-            post("/submit-qoodle-choices", (req, res) ->  req.body() );
-
-
-
-
-
-
-
-
 
 
             final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
@@ -117,7 +113,7 @@ public class Main {
 
 
 
-            QoodleView qv = new QoodleView( "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2017 19:53:00", qeList);
+            QoodleView qv = new QoodleView( "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2027 19:53:00", qeList);
 
 
             qv.insert(targetViewId, datastore);
@@ -165,7 +161,7 @@ public class Main {
             get("/create", (req, res) -> elementsJson);
 
 
-            System.out.println(elementsJson);
+            //System.out.println(elementsJson);
 
         }
         catch(Exception ex)
