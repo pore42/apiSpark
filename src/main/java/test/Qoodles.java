@@ -11,47 +11,39 @@ public class Qoodles extends Insertable{
 
     @Id
     private long qoodlesId ;
-    private String titolo;
+    private String title;
 
-    private String descrizione;
+    private String description;
 
-    private int partecipanti;
-    private Date dataChiusura;
+    private int partecipants;
+    private Date closingDate;
 
     public Qoodles() {
 
         this.qoodlesId = 0L;
-        this.titolo = "defTitle";
-        this.descrizione = "defDescription";
-        this.partecipanti = 0;
-        this.dataChiusura = new Date();
+        this.title = "defTitle";
+        this.description = "defDescription";
+        this.partecipants = 0;
+        this.closingDate = new Date();
     }
 
-    public Qoodles( String titolo, String descrizione, int partecipanti, Date dataChiusura) {
+    public Qoodles( String title, String description, int partecipants, Date closingDate) {
         this.qoodlesId = 0;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.partecipanti = partecipanti;
-        this.dataChiusura = dataChiusura;
-    }
-
-    public Qoodles(Qoodles q , long id)
-    {
-        this.qoodlesId = id;
-        this.titolo = q.getTitolo();
-        this.descrizione = q.getDescrizione();
-        this.partecipanti = q.getPartecipanti();
-        this.dataChiusura = q.getDataChiusura();
+        this.title = title;
+        this.description = description;
+        this.partecipants = partecipants;
+        this.closingDate = closingDate;
     }
 
 
 
-    public Qoodles(long qoodlesId, String titolo, String descrizione, int partecipanti, Date dataChiusura) {
+
+    public Qoodles(long qoodlesId, String title, String description, int partecipants, Date closingDate) {
         qoodlesId = qoodlesId;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.partecipanti = partecipanti;
-        this.dataChiusura = dataChiusura;
+        this.title = title;
+        this.description = description;
+        this.partecipants = partecipants;
+        this.closingDate = closingDate;
     }
 
 
@@ -63,36 +55,36 @@ public class Qoodles extends Insertable{
         this.qoodlesId = qoodlesId;
     }
 
-    public String getTitolo() {
-        return titolo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getdescription() {
+        return description;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getPartecipanti() {
-        return partecipanti;
+    public int getPartecipants() {
+        return partecipants;
     }
 
-    public void setPartecipanti(int partecipanti) {
-        this.partecipanti = partecipanti;
+    public void setPartecipants(int partecipants) {
+        this.partecipants = partecipants;
     }
 
-    public Date getDataChiusura() {
-        return dataChiusura;
+    public Date getClosingDate() {
+        return closingDate;
     }
 
-    public void setDataChiusura(Date dataChiusura) {
-        this.dataChiusura = dataChiusura;
+    public void setClosingDate(Date closingDate) {
+        this.closingDate = closingDate;
     }
 
 
