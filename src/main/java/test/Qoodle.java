@@ -2,6 +2,7 @@ package test;
 
 
 import com.google.gson.annotations.SerializedName;
+import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -9,10 +10,10 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Qoodle {
+public class Qoodle extends Insertable{
 
     @Id
-    private long id ;
+    private long qoodleId ;
     @SerializedName("title")
     private String title = "";
 
@@ -29,7 +30,7 @@ public class Qoodle {
     private ArrayList<Vote> voList;
 
     public Qoodle(String title, String description, String d, ArrayList<QoodleElement> qeList) {
-        this.id = 0L;
+        this.qoodleId = 0L;
         this.title = title;
         this.description = description;
         this.date = d;
@@ -38,7 +39,7 @@ public class Qoodle {
     }
 
     public Qoodle(String title, String description, String d ) {
-        this.id = 0L;
+        this.qoodleId = 0L;
         this.title = title;
         this.description = description;
         this.date = d;
@@ -50,13 +51,30 @@ public class Qoodle {
     public Qoodle(String s, long i )
     {
         this.title = s;
-        this.id = i;
+        this.qoodleId = i;
     }
 
     public Qoodle()
     {
         this.title = "default value";
-        this.id = 0;
+        this.qoodleId = 0;
+    }
+
+
+    @Override
+    public void insert(String name, Datastore ds) {
+        long nuovoId = this.inserisci(name, ds);
+        this.setQoodleId(nuovoId);
+        ds.save(this);
+
+    }
+
+    public long getQoodleId() {
+        return qoodleId;
+    }
+
+    public void setQoodleId(long qoodleId) {
+        this.qoodleId = qoodleId;
     }
 
     public ArrayList<QoodleElement> getQeList() {
@@ -77,12 +95,12 @@ public class Qoodle {
         this.title = title;
     }
 
-    public long getId() {
-        return id;
+    public long getqoodleId() {
+        return qoodleId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.qoodleId = id;
     }
 
 
