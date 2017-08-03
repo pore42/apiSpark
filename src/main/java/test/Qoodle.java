@@ -14,7 +14,7 @@ public class Qoodle {
     @Id
     private long id ;
     @SerializedName("title")
-    private String saluto = "";
+    private String title = "";
 
     @SerializedName("description")
     private String description = "";
@@ -28,18 +28,18 @@ public class Qoodle {
     @SerializedName("voList")
     private ArrayList<Vote> voList;
 
-    public Qoodle(String saluto, String description, String d, ArrayList<QoodleElement> qeList) {
+    public Qoodle(String title, String description, String d, ArrayList<QoodleElement> qeList) {
         this.id = 0L;
-        this.saluto = saluto;
+        this.title = title;
         this.description = description;
         this.date = d;
         this.qeList = qeList;
         this.voList = new ArrayList<Vote>();
     }
 
-    public Qoodle(String saluto, String description, String d ) {
+    public Qoodle(String title, String description, String d ) {
         this.id = 0L;
-        this.saluto = saluto;
+        this.title = title;
         this.description = description;
         this.date = d;
         this.qeList = new ArrayList<>();
@@ -49,13 +49,13 @@ public class Qoodle {
 
     public Qoodle(String s, long i )
     {
-        this.saluto = s;
+        this.title = s;
         this.id = i;
     }
 
     public Qoodle()
     {
-        this.saluto = "default value";
+        this.title = "default value";
         this.id = 0;
     }
 
@@ -69,12 +69,12 @@ public class Qoodle {
     }
 
 
-    public String getSaluto() {
-        return saluto;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSaluto(String saluto) {
-        this.saluto = saluto;
+    public void settitle(String title) {
+        this.title = title;
     }
 
     public long getId() {
@@ -97,5 +97,9 @@ public class Qoodle {
 
     public ArrayList<Vote> getVoList() {
         return voList;
+    }
+
+    public void setVoList(ArrayList<Vote> voList) {
+        this.voList = voList;
     }
 }
