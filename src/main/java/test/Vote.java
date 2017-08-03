@@ -11,9 +11,20 @@ public class Vote {
         this.votes = votes;
     }
 
-    public Vote(String userId) {
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
+    public ArrayList<Integer> getVotes() {
+        return votes;
+    }
 
+    public void setVotes(ArrayList<Integer> votes) {
+        this.votes = votes;
+    }
 }
