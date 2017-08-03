@@ -66,33 +66,20 @@ public class Main {
 
             post("/qoodles", (req, res) ->
             {
-
                 saveQoodle("qoodleId", req, gson, datastore);
                 return  req.body();
-            }
-            );
+            });
 
             post("/submit-qoodle-choices", (req, res) ->  req.body() );
 
 
-            
 
-            get("/list", (req, res) ->
+
+            get("/qoodles", (req, res) ->
             {
                 String provaJson = getList(datastore, gson);
-
                 return  provaJson;
-            }
-            );
-
-
-
-
-
-            //get("/list", (req, res) -> provaJson);
-
-
-
+            });
 
             String targetViewId = "qoodleViewId";
 
