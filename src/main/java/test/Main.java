@@ -44,12 +44,13 @@ public class Main {
 
 
                 ArrayList<Integer> voti = new ArrayList<>(primoQoodle.getQeList().size());
+
+                Vote v = new Vote("pore42", voti);
                 voti.add(5);
                 voti.add(2);
                 voti.add(7);
                 voti.add(2);
 
-                Vote v = new Vote("pore42", voti);
 
                 ArrayList<Vote> votiFatti = new ArrayList<>();
                 votiFatti.add(v);
@@ -62,7 +63,7 @@ public class Main {
 
                 System.out.println(req.body().toString());
 
-                datastore.save(primoQoodle);
+                primoQoodle.insert("qoodleId", datastore);
                 return  req.body();
             }
             );
