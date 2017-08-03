@@ -3,7 +3,6 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-import java.util.Date;
 
 @Entity
 public class Qoodles extends Insertable{
@@ -16,7 +15,7 @@ public class Qoodles extends Insertable{
     private String description;
 
     private int partecipants;
-    private Date closingDate;
+    private String closingDate;
 
     public Qoodles() {
 
@@ -24,10 +23,10 @@ public class Qoodles extends Insertable{
         this.title = "defTitle";
         this.description = "defDescription";
         this.partecipants = 0;
-        this.closingDate = new Date();
+        this.closingDate = "";
     }
 
-    public Qoodles( String title, String description, int partecipants, Date closingDate) {
+    public Qoodles( String title, String description, int partecipants, String closingDate) {
         this.qoodlesId = 0;
         this.title = title;
         this.description = description;
@@ -38,13 +37,14 @@ public class Qoodles extends Insertable{
 
 
 
-    public Qoodles(long qoodlesId, String title, String description, int partecipants, Date closingDate) {
-        qoodlesId = qoodlesId;
+    public Qoodles(long qoodlesId, String title, String description, int partecipants, String closingDate) {
+        this.qoodlesId = qoodlesId;
         this.title = title;
         this.description = description;
         this.partecipants = partecipants;
         this.closingDate = closingDate;
     }
+
 
 
     public long getQoodlesId() {
@@ -79,11 +79,11 @@ public class Qoodles extends Insertable{
         this.partecipants = partecipants;
     }
 
-    public Date getClosingDate() {
+    public String getClosingDate() {
         return closingDate;
     }
 
-    public void setClosingDate(Date closingDate) {
+    public void setClosingDate(String closingDate) {
         this.closingDate = closingDate;
     }
 

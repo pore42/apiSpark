@@ -2,7 +2,6 @@
 package test;
 import static spark.Spark.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.mongodb.morphia.Datastore;
@@ -19,6 +18,8 @@ public class Main {
 
         ArrayList<Integer> voti = new ArrayList<>(primoQoodle.getQeList().size());
         ArrayList<Vote> votiUtenti = new ArrayList<>();
+
+        votiUtenti.add(new Vote());
         primoQoodle.setVoList(votiUtenti);
 
         primoQoodle.insert(targetId, datastore);
@@ -62,11 +63,11 @@ public class Main {
             Insertable.progressiveId(targetId, datastore);
 
 
-            Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, new Date("October 13, 2014 11:13:00") );
-            Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, new Date("October 13, 2018 11:13:00") );
-            Qoodles q2 = new Qoodles( "Picnic", "Picnic in un giardino milanese", 15, new Date("October 17, 2017 14:30:00") );
-            Qoodles q3 = new Qoodles("TestOk", "Test per connessione con db", 200, new Date("October 11, 2017 14:30:00") );
-            Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, new Date("September 3, 2017 00:00:00") );
+            Qoodles q = new Qoodles( "Gas di Novembre", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 6, "October 13, 2014 11:13:00") ;
+            Qoodles q1 = new Qoodles( "Christams Dinner", "idfsofdsijjfsdijfsdijfsijosdfjiofd", 4, "October 13, 2018 11:13:00") ;
+            Qoodles q2 = new Qoodles( "Picnic", "Picnic in un giardino milanese", 15, "October 17, 2017 14:30:00") ;
+            Qoodles q3 = new Qoodles("TestOk", "Test per connessione con db", 200, "October 11, 2017 14:30:00") ;
+            Qoodles q4 = new Qoodles("Birthday Party", "Festa di compleanno al birrificio", 300, "September 3, 2017 00:00:00") ;
 
 
 
@@ -77,17 +78,46 @@ public class Main {
             q4.insert(targetId, datastore);
 
 
-            final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
-            final List<Qoodles> sal = primaQuery.asList();
-
-
-
-            String provaJson = gson.toJson(sal);
 
 
 
 
-            get("/list", (req, res) -> provaJson);
+
+
+
+            get("/list", (req, res) ->
+            {
+                final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).retrievedFields(true, "qoodleId","title", "description","closingDate", "voList");
+                final List<Qoodle> sal = primaQuery.asList();
+
+
+                ArrayList<Qoodles> qList = new ArrayList<>();
+
+                for ( Qoodle x : sal)
+                {
+                    System.out.println(x.getVoList() + "    "  + x.getClosingDate());
+                    qList.add(
+                            new Qoodles
+                                    (x.getqoodleId(),
+                                            x.getTitle(),
+                                            x.getDescription() ,
+                                            x.getVoList().size(),
+                                            x.getClosingDate())
+                    );
+
+                }
+
+                String provaJson = gson.toJson(qList);
+
+                return  provaJson;
+            }
+            );
+
+
+
+
+
+            //get("/list", (req, res) -> provaJson);
 
 
 

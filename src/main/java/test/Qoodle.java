@@ -21,7 +21,7 @@ public class Qoodle extends Insertable{
     private String description = "";
 
     @SerializedName("closingDate")
-    private String date;
+    private String closingDate;
 
     @SerializedName("qeList")
     private ArrayList<QoodleElement> qeList;
@@ -33,17 +33,18 @@ public class Qoodle extends Insertable{
         this.qoodleId = 0L;
         this.title = title;
         this.description = description;
-        this.date = d;
+        this.closingDate = d;
         this.qeList = qeList;
-        this.voList = new ArrayList<Vote>();
+        this.voList = new ArrayList<>();
     }
 
     public Qoodle(String title, String description, String d ) {
         this.qoodleId = 0L;
         this.title = title;
         this.description = description;
-        this.date = d;
+        this.closingDate = d;
         this.qeList = new ArrayList<>();
+        this.voList = new ArrayList<>();
     }
 
 
@@ -82,8 +83,8 @@ public class Qoodle extends Insertable{
     }
 
 
-    public String getDate() {
-        return date;
+    public String getClosingDate() {
+        return closingDate;
     }
 
 
