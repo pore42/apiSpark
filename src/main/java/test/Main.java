@@ -34,11 +34,19 @@ public class Main {
 
 
         try{
+            Gson gson = new Gson();
+
             post("/qoodles", (req, res) ->
             {
-               System.out.println(req.body().toString());
 
-               return  req.body();
+                System.out.println(req.body());
+                final Qoodle primoQoodle = gson.fromJson(req.body().toString(), Qoodle.class);
+                System.out.println(primoQoodle.getSaluto() + primoQoodle.getDescription() + " " + primoQoodle.getDate() + "  " + primoQoodle.getQeList()  + "  " + primoQoodle.getVoList());
+
+                System.out.println(req.body().toString());
+
+                datastore.save(primoQoodle);
+                return  req.body();
             }
             );
 
@@ -69,7 +77,6 @@ public class Main {
             final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
             final List<Qoodles> sal = primaQuery.asList();
 
-            Gson gson = new Gson();
             String provaJson = gson.toJson(sal);
 
             get("/list", (req, res) -> provaJson);

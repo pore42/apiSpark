@@ -179,6 +179,21 @@ public class QoodleElement extends Insertable{
 
 
     @Override
+    public String toString() {
+        return "QoodleElement{" +
+                "elId=" + elId +
+                ", name='" + name + '\'' +
+                ", min=" + min +
+                ", max=" + max +
+                ", umoption='" + umoption + '\'' +
+                ", coinoption='" + coinoption + '\'' +
+                ", price=" + price +
+                ", counter=" + counter +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
+    }
+
+    @Override
     public void insert( String name, Datastore ds) {
 
         long nuovoId = this.inserisci(name, ds);

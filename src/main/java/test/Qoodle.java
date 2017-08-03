@@ -1,65 +1,101 @@
 package test;
 
-import org.mongodb.morphia.Datastore;
+
+import com.google.gson.annotations.SerializedName;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import java.util.ArrayList;
 
+
 @Entity
-public class Qoodle extends Insertable{
+public class Qoodle {
 
     @Id
-    private long qoodleId;
-    private String title;
-    private String description;
-    private String closingDate;
+    private long id ;
+    @SerializedName("title")
+    private String saluto = "";
+
+    @SerializedName("description")
+    private String description = "";
+
+    @SerializedName("closingDate")
+    private String date;
+
+    @SerializedName("qeList")
     private ArrayList<QoodleElement> qeList;
-    private ArrayList<Vote> qvotes;
 
-    public Qoodle() {
-        this.qoodleId = -1L;
-        this.title = "";
-        this.description = "";
-        this.closingDate = "";
-        this.qeList = null;
-        this.qvotes = null;
+    @SerializedName("voList")
+    private ArrayList<Vote> voList;
 
-    }
-
-    public Qoodle(String title, String description, String closingDate, ArrayList<QoodleElement> qeList) {
-        this.qoodleId = 0;
-        this.title = title;
+    public Qoodle(String saluto, String description, String d, ArrayList<QoodleElement> qeList) {
+        this.id = 0L;
+        this.saluto = saluto;
         this.description = description;
-        this.closingDate = closingDate;
+        this.date = d;
         this.qeList = qeList;
+        this.voList = new ArrayList<Vote>();
     }
 
-    public Qoodle(long qoodleId, String title, String description, String closingDate, ArrayList<QoodleElement> qeList, ArrayList<Vote> qvotes) {
-        this.qoodleId = qoodleId;
-        this.title = title;
+    public Qoodle(String saluto, String description, String d ) {
+        this.id = 0L;
+        this.saluto = saluto;
         this.description = description;
-        this.closingDate = closingDate;
-        this.qeList = qeList;
-        this.qvotes = qvotes;
+        this.date = d;
+        this.qeList = new ArrayList<>();
     }
 
-    public Qoodle(long qoodleId, String title, String description, String closingDate, ArrayList<QoodleElement> qeList) {
-        this.qoodleId = qoodleId;
-        this.title = title;
+
+
+    public Qoodle(String s, long i )
+    {
+        this.saluto = s;
+        this.id = i;
+    }
+
+    public Qoodle()
+    {
+        this.saluto = "default value";
+        this.id = 0;
+    }
+
+    public ArrayList<QoodleElement> getQeList() {
+        return qeList;
+    }
+
+
+    public String getDate() {
+        return date;
+    }
+
+
+    public String getSaluto() {
+        return saluto;
+    }
+
+    public void setSaluto(String saluto) {
+        this.saluto = saluto;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
-        this.closingDate = closingDate;
-        this.qeList = qeList;
     }
 
 
-
-
-    @Override
-    public void insert(String name, Datastore ds) {
-        long nuovoId = this.inserisci(name, ds);
-       // this.setQoodleViewId(nuovoId);
-        ds.save(this);
-
+    public ArrayList<Vote> getVoList() {
+        return voList;
     }
 }
