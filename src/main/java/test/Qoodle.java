@@ -27,7 +27,7 @@ public class Qoodle extends Insertable{
     private ArrayList<QoodleElement> qeList;
 
     @SerializedName("voList")
-    private ArrayList<Vote> voList;
+    private ArrayList<Vote> voList = new ArrayList<>();
 
     public Qoodle(String title, String description, String d, ArrayList<QoodleElement> qeList) {
         this.qoodleId = 0L;
@@ -35,7 +35,6 @@ public class Qoodle extends Insertable{
         this.description = description;
         this.closingDate = d;
         this.qeList = qeList;
-        this.voList = new ArrayList<>();
     }
 
     public Qoodle(String title, String description, String d ) {
@@ -44,7 +43,7 @@ public class Qoodle extends Insertable{
         this.description = description;
         this.closingDate = d;
         this.qeList = new ArrayList<>();
-        this.voList = new ArrayList<>();
+
     }
 
 
