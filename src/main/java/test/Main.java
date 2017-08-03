@@ -39,9 +39,26 @@ public class Main {
             post("/qoodles", (req, res) ->
             {
 
-                System.out.println(req.body());
+                //System.out.println(req.body());
                 final Qoodle primoQoodle = gson.fromJson(req.body().toString(), Qoodle.class);
-                System.out.println(primoQoodle.getSaluto() + primoQoodle.getDescription() + " " + primoQoodle.getDate() + "  " + primoQoodle.getQeList()  + "  " + primoQoodle.getVoList());
+
+
+                ArrayList<Integer> voti = new ArrayList<>(primoQoodle.getQeList().size());
+                voti.add(5);
+                voti.add(2);
+                voti.add(7);
+                voti.add(2);
+
+                Vote v = new Vote("pore42", voti);
+
+                ArrayList<Vote> votiFatti = new ArrayList<>();
+                votiFatti.add(v);
+
+                primoQoodle.setVoList(votiFatti);
+                System.out.println(primoQoodle.getTitle() + primoQoodle.getDescription() + " " + primoQoodle.getDate() + "  " + primoQoodle.getQeList()  + "  " +    primoQoodle.getVoList());
+
+
+
 
                 System.out.println(req.body().toString());
 
