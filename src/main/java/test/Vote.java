@@ -27,4 +27,12 @@ public class Vote {
     public void setVotes(ArrayList<Integer> votes) {
         this.votes = votes;
     }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "utente: '" + userId + '\'' +
+                ", votes=" + votes +
+                '}';
+    }
 }
