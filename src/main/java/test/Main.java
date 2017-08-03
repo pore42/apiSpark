@@ -9,11 +9,20 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
 
 import com.google.gson.Gson;
+import spark.Request;
 
 
 public class Main {
 
+    private static void saveQoodle(String targetId, Request req, Gson gson, Datastore datastore) {
+        final Qoodle primoQoodle = gson.fromJson(req.body().toString(), Qoodle.class);
 
+        ArrayList<Integer> voti = new ArrayList<>(primoQoodle.getQeList().size());
+        ArrayList<Vote> votiUtenti = new ArrayList<>();
+        primoQoodle.setVoList(votiUtenti);
+
+        primoQoodle.insert(targetId, datastore);
+    }
 
 
 
@@ -39,31 +48,7 @@ public class Main {
             post("/qoodles", (req, res) ->
             {
 
-                //System.out.println(req.body());
-                final Qoodle primoQoodle = gson.fromJson(req.body().toString(), Qoodle.class);
-
-
-                ArrayList<Integer> voti = new ArrayList<>(primoQoodle.getQeList().size());
-
-                Vote v = new Vote("pore42", voti);
-                voti.add(5);
-                voti.add(2);
-                voti.add(7);
-                voti.add(2);
-
-
-                ArrayList<Vote> votiFatti = new ArrayList<>();
-                votiFatti.add(v);
-
-                primoQoodle.setVoList(votiFatti);
-                System.out.println(primoQoodle.getTitle() + primoQoodle.getDescription() + " " + primoQoodle.getDate() + "  " + primoQoodle.getQeList()  + "  " +    primoQoodle.getVoList());
-
-
-
-
-                System.out.println(req.body().toString());
-
-                primoQoodle.insert("qoodleId", datastore);
+                saveQoodle("qoodleId", req, gson, datastore);
                 return  req.body();
             }
             );
@@ -95,7 +80,12 @@ public class Main {
             final Query<Qoodles> primaQuery = datastore.createQuery(Qoodles.class);
             final List<Qoodles> sal = primaQuery.asList();
 
+
+
             String provaJson = gson.toJson(sal);
+
+
+
 
             get("/list", (req, res) -> provaJson);
 
