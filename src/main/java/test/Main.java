@@ -99,61 +99,11 @@ public class Main {
 
             get("/qoodles", (req, res) ->getList(datastore, gson));
 
-            String targetViewId = "qoodleViewId";
 
-            Insertable.progressiveId(targetViewId, datastore);
-
-
-
-
-
-            QoodleElement qe = new QoodleElement(1L, "banana", "kg", "€", 1.5f, 0, "_assets/img/bana.png" );
-            QoodleElement qe2 = new QoodleElement(2L, "MelaRossa",  "kg", "€", 2.0f, 0, "_assets/img/redApple.png" );
-            QoodleElement qe3 = new QoodleElement(3L, "Kiwi", "", "", 0, "_assets/img/kiwi.png" );
-            QoodleElement qe4 = new QoodleElement(4L, "Pesca", "", "€",0, "_assets/img/bana.png" );
-            QoodleElement qe5 = new QoodleElement(5L, "Uva", "", "€", 0, "_assets/img/bana.png" );
-            QoodleElement qe6 = new QoodleElement(6L, "Number of Vegetarian","", "€", 0, "_assets/img/kiwi.png" );
-            QoodleElement qe7 = new QoodleElement(7L, "Kiwi","bott", "€", 3.0f, 5, "_assets/img/kiwi.png" );
-            QoodleElement qe8 = new QoodleElement(8L, "Number of people","", "€", 0.0f, 0, "_assets/img/redApple.png" );
-
-
-
-
-
-            ArrayList<QoodleElement> qeList = new ArrayList<>();
-            qeList.add(qe);
-            qeList.add(qe2);
-            qeList.add(qe3);
-            qeList.add(qe4);
-            qeList.add(qe5);
-            qeList.add(qe6);
-            qeList.add(qe7);
-            qeList.add(qe8);
-
-
-
-
-
-
-            QoodleView qv = new QoodleView( "Acquisto di gruppo di novembre", "È a disposizione sortita varietà di verdure e frutta di stagione","July 31, 2027 19:53:00", qeList);
-
-
-            qv.insert(targetViewId, datastore);
-
-
-
-            final Query<QoodleView> viewQuery = datastore.createQuery(QoodleView.class);
-            final QoodleView view = viewQuery.asList().get(0);
-
-            String viewJson = gson.toJson(view);
-
-           // get("/view", (req, res) -> viewJson);
 
 
             get("/view/:id", (req, res) ->
             {
-
-
                 return getQoodleView(gson, datastore, req);
 
             });
