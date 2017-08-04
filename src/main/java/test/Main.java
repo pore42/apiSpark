@@ -48,7 +48,7 @@ public class Main {
 
         final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", id).retrievedFields(true, "qoodleId","title", "description","closingDate", "qeList");
         final Qoodle targetQoodle = primaQuery.limit(1).get();
-        
+
 
         QoodleView qView =
                 new QoodleView(
@@ -106,39 +106,16 @@ public class Main {
 
             });
 
-            //System.out.println(viewJson);
-
-
-            QoodleElement newQe = new QoodleElement( "banana", 0, 99999, "kg", "€", 4.5f, 5, "_assets/img/bana.png" );
-            QoodleElement newQe2 = new QoodleElement("Intolleranti al lattosio", 0, 99999, "€", 0.0f, 0, "_assets/img/redApple.png" );
-            QoodleElement newQe3 = new QoodleElement("celiaci", 0, 99999, "", "", 0.0f, 0, "_assets/img/kiwi.png" );
-
-
-            String elementTargetId = "elId";
 
 
 
-            Insertable.progressiveId(elementTargetId, datastore);
+            final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).retrievedFields(true, "qeList");
+            final ArrayList<QoodleElement> templateExample = primaQuery.asList().get(0).getQeList();
 
 
 
+            get("/create", (req, res) -> gson.toJson(templateExample));
 
-
-            newQe.insert(elementTargetId, datastore);
-            newQe2.insert(elementTargetId, datastore);
-            newQe3.insert(elementTargetId, datastore);
-
-
-
-            final Query<QoodleElement> elementQuery = datastore.createQuery(QoodleElement.class);
-            final List<QoodleElement> elements = elementQuery.asList();
-
-            String elementsJson = gson.toJson(elements);
-
-            get("/create", (req, res) -> elementsJson);
-
-
-            //System.out.println(elementsJson);
 
         }
         catch(Exception ex)
