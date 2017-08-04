@@ -48,9 +48,7 @@ public class Main {
 
         final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", id).retrievedFields(true, "qoodleId","title", "description","closingDate", "qeList");
         final Qoodle targetQoodle = primaQuery.limit(1).get();
-
-        System.out.println("titolo" + targetQoodle.getTitle());
-
+        
 
         QoodleView qView =
                 new QoodleView(
