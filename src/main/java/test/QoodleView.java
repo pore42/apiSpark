@@ -69,11 +69,11 @@ public class QoodleView extends Insertable{
         this.description = description;
     }
 
-    public String getclosingDate() {
+    public String getClosingDate() {
         return closingDate;
     }
 
-    public void setclosingDate(String closingDate) {
+    public void setClosingDate(String closingDate) {
         this.closingDate = closingDate;
     }
 

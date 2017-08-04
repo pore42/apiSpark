@@ -132,14 +132,43 @@ public class Main {
             {
                 long id = Long.parseLong( req.params(":id"));
 
-                final Query<QoodleView> specificQoodleQuery = datastore.createQuery(QoodleView.class).filter("qoodleViewId ==", id);
+
+
+
+
+                final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", id).retrievedFields(true, "qoodleId","title", "description","closingDate", "qeList");
+                final Qoodle targetQoodle = primaQuery.limit(1).get();
+
+                System.out.println("titolo" + targetQoodle.getTitle());
+
+                QoodleView qView = new QoodleView(
+
+                                            targetQoodle.getQoodleId(),
+                                            targetQoodle.getTitle(),
+                                            targetQoodle.getDescription() ,
+                                            targetQoodle.getClosingDate(),
+                                            targetQoodle.getQeList()
+                );
+
+
+                return gson.toJson(qView);
+
+
+
+
+
+
+
+
+
+                /*final Query<QoodleView> specificQoodleQuery = datastore.createQuery(QoodleView.class).filter("qoodleViewId ==", id);
                 //pongo limite e ne prendo uno quindi
                 final QoodleView view1 = specificQoodleQuery.limit(1).get();
 
                 System.out.println("CIAOOOOOOOOOOOOOOOOOOO" + view1.getTitle());
 
 
-                return gson.toJson(view1);
+                return gson.toJson(view1);*/
             });
 
             //System.out.println(viewJson);
