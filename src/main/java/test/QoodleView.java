@@ -14,22 +14,22 @@ public class QoodleView extends Insertable{
     private long qoodleViewId;
     private String title;
     private String description;
-    private String chiusura;
+    private String closingDate;
     private ArrayList<QoodleElement> ele;
 
     public QoodleView(String title, String description, String chiusura, ArrayList<QoodleElement> ele) {
         this.qoodleViewId = 0;
         this.title = title;
         this.description = description;
-        this.chiusura = chiusura;
+        this.closingDate = chiusura;
         this.ele = ele;
     }
 
-    public QoodleView(long qoodleViewId, String title, String description, String chiusura, ArrayList<QoodleElement> ele) {
+    public QoodleView(long qoodleViewId, String title, String description, String closingDate, ArrayList<QoodleElement> ele) {
         this.qoodleViewId = qoodleViewId;
         this.title = title;
         this.description = description;
-        this.chiusura = chiusura;
+        this.closingDate = closingDate;
         this.ele = ele;
     }
 
@@ -37,18 +37,11 @@ public class QoodleView extends Insertable{
         this.qoodleViewId = 0;
         this.title = "";
         this.description = "";
-        this.chiusura = "";
+        this.closingDate = "";
         this.ele = new ArrayList<QoodleElement>();
     }
 
-
-    public QoodleView(QoodleView q , long id ) {
-        this.qoodleViewId = id;
-        this.title = q.title;
-        this.description = q.description;
-        this.chiusura = q.chiusura;
-        this.ele = q.ele;
-    }
+    
 
 
 
@@ -76,12 +69,12 @@ public class QoodleView extends Insertable{
         this.description = description;
     }
 
-    public String getChiusura() {
-        return chiusura;
+    public String getclosingDate() {
+        return closingDate;
     }
 
-    public void setChiusura(String chiusura) {
-        this.chiusura = chiusura;
+    public void setclosingDate(String closingDate) {
+        this.closingDate = closingDate;
     }
 
     public ArrayList<QoodleElement> getEle() {
