@@ -125,20 +125,21 @@ public class Main {
 
             String viewJson = gson.toJson(view);
 
-            get("/view", (req, res) -> viewJson);
+           // get("/view", (req, res) -> viewJson);
 
 
-            get("/qoodles/:id", (req, res) ->
+            get("/view/:id", (req, res) ->
             {
                 long id = Long.parseLong( req.params(":id"));
 
                 final Query<QoodleView> specificQoodleQuery = datastore.createQuery(QoodleView.class).filter("qoodleViewId ==", id);
-                final QoodleView view1 = specificQoodleQuery.asList().get(0);
+                //pongo limite e ne prendo uno quindi
+                final QoodleView view1 = specificQoodleQuery.limit(1).get();
 
                 System.out.println("CIAOOOOOOOOOOOOOOOOOOO" + view1.getTitle());
 
 
-                return "Hello, "+ req.params(":id") + gson.toJson(view1);
+                return gson.toJson(view1);
             });
 
             //System.out.println(viewJson);
