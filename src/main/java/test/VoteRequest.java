@@ -1,5 +1,6 @@
 package test;
 
+import com.google.gson.annotations.SerializedName;
 import org.mongodb.morphia.annotations.Entity;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 @Entity
 public class VoteRequest extends Vote{
 
-
+    @SerializedName("id")
     private long qoodleId;
 
 

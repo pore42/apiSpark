@@ -8,6 +8,7 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
 
 import com.google.gson.Gson;
+import org.mongodb.morphia.query.UpdateOperations;
 import spark.Request;
 
 
@@ -101,9 +102,17 @@ public class Main {
 
                 final VoteRequest completeObject = gson.fromJson(req.body().toString(), VoteRequest.class);
 
-                final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId());
-                final Qoodle targetQoodle = primaQuery.limit(1).get();
-                System.out.println(targetQoodle.getTitle() + "    " + targetQoodle.getDescription());
+                final Vote newVote = new Vote(completeObject.getUserId(), completeObject.getVotes());
+
+                System.out.println(req.body());
+                Qoodle q = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId()).get();
+
+                final Query<Qoodle> updateQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId());
+                final UpdateOperations<Qoodle> updateQoodleVote = datastore.createUpdateOperations(Qoodle.class).add("voList", newVote);
+                datastore.update(updateQuery, updateQoodleVote);
+
+                Qoodle qAfter = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId()).get();
+                System.out.println(q.getVoList() +  "   " + qAfter.getVoList());
                 return req.body();
             });
 

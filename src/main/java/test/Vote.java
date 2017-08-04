@@ -1,5 +1,6 @@
 package test;
 
+import com.google.gson.annotations.SerializedName;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 @Entity
 public class Vote {
     @Id
+    @SerializedName("username")
     private String userId;
+    @SerializedName("elements")
     private ArrayList<Integer> votes;
 
     public Vote(String userId, ArrayList<Integer> votes) {
@@ -38,5 +41,11 @@ public class Vote {
         this.votes = votes;
     }
 
-
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "userId='" + userId + '\'' +
+                ", votes=" + votes +
+                '}';
+    }
 }
