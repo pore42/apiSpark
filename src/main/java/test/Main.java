@@ -74,6 +74,19 @@ public class Main {
 
 
 
+    private static Object submitVotes(Datastore datastore, Gson gson, Request req) {
+        final VoteRequest completeObject = gson.fromJson(req.body().toString(), VoteRequest.class);
+        final Vote newVote = new Vote(completeObject.getUserId(), completeObject.getVotes());
+
+
+        final Query<Qoodle> updateQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId());
+        final UpdateOperations<Qoodle> updateQoodleVote = datastore.createUpdateOperations(Qoodle.class).add("voList", newVote);
+
+        datastore.update(updateQuery, updateQoodleVote);
+
+        return req.body();
+    }
+
     public static void main(String[] args) {
         final String from= "http://localhost:8080";
         final String how= "get";
@@ -98,23 +111,7 @@ public class Main {
                 return  req.body();
             });
 
-            post("/submit-qoodle-choices", (req, res) -> {
-
-                final VoteRequest completeObject = gson.fromJson(req.body().toString(), VoteRequest.class);
-
-                final Vote newVote = new Vote(completeObject.getUserId(), completeObject.getVotes());
-
-                System.out.println(req.body());
-                Qoodle q = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId()).get();
-
-                final Query<Qoodle> updateQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId());
-                final UpdateOperations<Qoodle> updateQoodleVote = datastore.createUpdateOperations(Qoodle.class).add("voList", newVote);
-                datastore.update(updateQuery, updateQoodleVote);
-
-                Qoodle qAfter = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId()).get();
-                System.out.println(q.getVoList() +  "   " + qAfter.getVoList());
-                return req.body();
-            });
+            post("/submit-qoodle-choices", (req, res) ->       submitVotes(datastore, gson, req) );
 
 
 
@@ -124,11 +121,7 @@ public class Main {
 
 
 
-            get("/view/:id", (req, res) ->
-            {
-                return getQoodleView(gson, datastore, req);
-
-            });
+            get("/view/:id", (req, res) ->   getQoodleView(gson, datastore, req) );
 
 
 
