@@ -43,6 +43,28 @@ public class Main {
         return gson.toJson(qList);
     }
 
+    private static String getQoodleView(Gson gson,Datastore datastore, Request req) {
+        long id = Long.parseLong( req.params(":id"));
+
+        final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", id).retrievedFields(true, "qoodleId","title", "description","closingDate", "qeList");
+        final Qoodle targetQoodle = primaQuery.limit(1).get();
+
+        System.out.println("titolo" + targetQoodle.getTitle());
+
+
+        QoodleView qView =
+                new QoodleView(
+
+                        targetQoodle.getQoodleId(),
+                        targetQoodle.getTitle(),
+                        targetQoodle.getDescription() ,
+                        targetQoodle.getClosingDate(),
+                        targetQoodle.getQeList()
+                );
+
+        return gson.toJson(qView);
+    }
+
 
 
 
@@ -132,26 +154,8 @@ public class Main {
             {
 
 
-                long id = Long.parseLong( req.params(":id"));
+                return getQoodleView(gson, datastore, req);
 
-                final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", id).retrievedFields(true, "qoodleId","title", "description","closingDate", "qeList");
-                final Qoodle targetQoodle = primaQuery.limit(1).get();
-
-                System.out.println("titolo" + targetQoodle.getTitle());
-
-                QoodleView qView = new QoodleView(
-
-                                            targetQoodle.getQoodleId(),
-                                            targetQoodle.getTitle(),
-                                            targetQoodle.getDescription() ,
-                                            targetQoodle.getClosingDate(),
-                                            targetQoodle.getQeList()
-                );
-
-
-                return gson.toJson(qView);
-
-                
             });
 
             //System.out.println(viewJson);
