@@ -63,6 +63,13 @@ public class Main {
         return gson.toJson(qView);
     }
 
+    private static String getQoodleElements( Gson gson, Datastore datastore) {
+        final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).retrievedFields(true, "qeList");
+        final ArrayList<QoodleElement> templateExample = primaQuery.asList().get(0).getQeList();
+
+        return gson.toJson(templateExample);
+    }
+
 
 
 
@@ -90,7 +97,15 @@ public class Main {
                 return  req.body();
             });
 
-            post("/submit-qoodle-choices", (req, res) ->  req.body() );
+            post("/submit-qoodle-choices", (req, res) -> {
+
+                final VoteRequest completeObject = gson.fromJson(req.body().toString(), VoteRequest.class);
+
+                final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).filter("qoodleId ==", completeObject.getQoodleId());
+                final Qoodle targetQoodle = primaQuery.limit(1).get();
+                System.out.println(targetQoodle.getTitle() + "    " + targetQoodle.getDescription());
+                return req.body();
+            });
 
 
 
@@ -109,12 +124,7 @@ public class Main {
 
 
 
-            final Query<Qoodle> primaQuery = datastore.createQuery(Qoodle.class).retrievedFields(true, "qeList");
-            final ArrayList<QoodleElement> templateExample = primaQuery.asList().get(0).getQeList();
-
-
-
-            get("/create", (req, res) -> gson.toJson(templateExample));
+            get("/create", (req, res) -> getQoodleElements(gson, datastore));
 
 
         }
