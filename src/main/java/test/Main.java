@@ -75,11 +75,7 @@ public class Main {
 
 
 
-            get("/qoodles", (req, res) ->
-            {
-                String provaJson = getList(datastore, gson);
-                return  provaJson;
-            });
+            get("/qoodles", (req, res) ->getList(datastore, gson));
 
             String targetViewId = "qoodleViewId";
 
@@ -132,6 +128,18 @@ public class Main {
             get("/view", (req, res) -> viewJson);
 
 
+            get("/qoodles/:id", (req, res) ->
+            {
+                long id = Long.parseLong( req.params(":id"));
+
+                final Query<QoodleView> specificQoodleQuery = datastore.createQuery(QoodleView.class).filter("qoodleViewId ==", id);
+                final QoodleView view1 = specificQoodleQuery.asList().get(0);
+
+                System.out.println("CIAOOOOOOOOOOOOOOOOOOO" + view1.getTitle());
+
+
+                return "Hello, "+ req.params(":id") + gson.toJson(view1);
+            });
 
             //System.out.println(viewJson);
 
