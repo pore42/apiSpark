@@ -105,32 +105,24 @@ public class Main {
         try{
             Gson gson = new Gson();
 
-            //visualizzo la lista ( rest )
+            //LIST
             get("/qoodles", (req, res) ->getList(datastore, gson));
 
-            //prendo i dati di uno specifico qoodles
+
+
+            //VIEW
+
             get("/qoodle/:id", (req, res) ->   getQoodleView(gson, datastore, req) );
-
-
 
             post("/qoodle/:id", (req, res) ->       submitVotes(datastore, gson, req) );
 
 
-            //usando lo standard rest
+            //CREATE
             post("/qoodles", (req, res) ->
             {
                 saveQoodle("qoodleId", req, gson, datastore);
                 return  req.body();
             });
-
-
-
-
-
-
-
-
-
 
             get("/create", (req, res) -> getQoodleElements(gson, datastore));
 
